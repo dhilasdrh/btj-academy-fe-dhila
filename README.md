@@ -67,17 +67,18 @@ HTML Structure and Elements that used in the main content in about.html (About M
 			 - The first cell contains profile image (`<img>`).`<figure>`used to wrapped/group together an image (`<img>`) and its caption (`<figcaption>`).
 			 - The second cell contains an `<article>` element with a heading group (`<hgroup>`), a subheading (`<h2>`) for name, a paragraph (`<p>`) for profile description, an `<address>` element with contact details, and an `<aside>` element that represents content aside from the main content with buttons (`<button>`) for "Visit GitHub" and "Email Me" actions. The button has attribute `onclick` attribute that triggers JavaScript function that directed user to the GitHub profile and another to initiate an email with a predefined subject and message. 
 	 - Text Formatting Element:
-		 - `<u>`: underlined text.
-		 - `<mark>`: highlight or mark portions of text.
-		 - `<strong>`: indicates strong importance, written in bold.
-		 - `<em>`: emphasizes text, written in italic.
-		 - `<s>`: represents deleted or irrelevant text, often with a strikethrough.
+  		- `<u>`: underlined text.
+  		- `<mark>`: highlight or mark portions of text.
+  		- `<strong>`: indicates strong importance, written in bold.
+		- `<em>`: emphasizes text, written in italic.
+  		- `<s>`: represents deleted or irrelevant text, often with a strikethrough.
+   		- `<abbr>`: used for abbreviation or acronym. includes `title` attribute to provide the full meaning, and browsers often display this information as a tooltip when users hover over the abbreviated text.
  - Education Section
 	 - `<section>`: represents a thematic grouping of content, often used to divide a webpage into sections.
 	 - `<fieldset>`: to semantically group related form elements (Education) together and provide a visual and organizational structure to the form.
 	 - `<legend>`: provides caption/title for the `<fieldset>` (Education).
 	 - `<h3>`: defines subheading (heading level 3) for Education.
-	 - `<ul>` and `<li>`: create a bulleted list of educational levels.  presented in an unordered list (`<ul>`) with list items (`<li>`).
+	 - `<ul>` and `<li>`: create a bulleted list of educational levels. presented in an unordered list (`<ul>`) with list items (`<li>`).
 	 - `<i>`: italicizing specific fields of study.
  - Work Experience Section
 	 - `<section>`: represents a thematic grouping of content.
