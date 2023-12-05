@@ -1,4 +1,3 @@
-
 # Practical Exercise 1 - Basic Web Programming 
 
 > Create About Page with Your Profile.
@@ -101,3 +100,6 @@ HTML Structure and Elements that used in the main content in about.html (About M
 	-   `<em>`: emphasized text. used for italicizing a quote.
 	-   `<q>`: a short inline quotation. browser normally insert quotation marks around the quotation.
 	-   `<span>`: defines a section of content to apply additional styling. used here to represent the author's name.
+
+## Screenshot (About Me Page)
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/assets/49943758/f8968fdd-cf74-45c8-9b61-eb77ae23f415" width="80%">
