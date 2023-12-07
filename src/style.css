@@ -1,3 +1,4 @@
+/* define root-level CSS variables for color scheme */
 :root {
     --primary-color: #3466aa;
     --secondary-color: #333;
@@ -10,12 +11,14 @@
     --hover-glow-color: rgba(52, 102, 170, 0.7);
 }
 
+/* for centered header */
 header {
     background-color: var(--primary-color);
     color: white;
     text-align: center;
 }
 
+/* for centered navbar */
 #navbar {
     background-color: var(--secondary-color);
     color: white;
@@ -24,16 +27,19 @@ header {
     justify-content: center;
 }
 
+/* for links (menu item) in navbar */
 #navbar > a {
     text-decoration: none;
     color: white;
     padding: 10px 20px;
 }
 
+/* change color on hover for navbar links */
 #navbar > a:hover {
     color: var(--accent-color);
 }
 
+/* highlight active link in the navbar */
 #navbar > a.active {
     color: var(--primary-color);
     font-weight: bolder;
@@ -56,6 +62,7 @@ body {
     color: var(--text-color);
 }
 
+/* styling for the main container */
 #main-container {
     background-color: var(--container-background-color);
     border-radius: 8px;
@@ -65,11 +72,13 @@ body {
     text-align: center;
 }
 
+/* styling for login section */
 .welcome-login {
     text-align: left;
     margin: 0px 10px;
 }
 
+/* styling for the login container */
 #login-container {
     display: inline-block;
     text-align: left;
@@ -77,19 +86,22 @@ body {
     padding: 10px;
 }
 
+/* styling for labels, inputs, and buttons */
 label, input, button {
     width: 350px;
     display: block;
     margin: 5px 0;
 }
 
-input {
+/* styling for text inputs */
+input[type="text"], input[type="password"] {
     margin-bottom: 10px;
     border: 1px solid #c2c8d0;
     padding: 12px;
     border-radius: 3px;
 }
 
+/* add outline and box shadow with primary color (blue) when user type or put the cursor in the input field */
 input:focus {
     outline: none;
     border-color: var(--primary-color);
@@ -99,7 +111,7 @@ input:focus {
 label {
     text-align: 12px;
     color: var(--secondary-color);
-    font-size: small;
+    font-size: 1em;
 }
 
 #login-button {
@@ -113,10 +125,11 @@ label {
     font-family: Poppins;
 }
 
+/* changes background color and cursor on hover for login button */
 #login-button:hover {
     background-color: rgb(13, 47, 121);
     cursor: pointer;
-  }
+}
 
 #img-login {
     display: block;
@@ -124,6 +137,7 @@ label {
     max-width: 100%;
 }
 
+/* center-aligns and italicizes the text within the quote */
 .quote {
     text-align: center;
     font-style: italic;
@@ -134,11 +148,12 @@ footer {
     color: white;
     padding: 0.5em 0;
     font-size: 14px;
-    margin-top: auto; 
+    margin-top: auto;
     text-align: center;
 }
 
-/* ABOUT ME  */
+/* ABOUT ME Section */
+
 #profile-container {
     display: flex;
     align-items: center;
@@ -149,52 +164,59 @@ footer {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* allowing the profile img to grow or shrink within the flex container */
 #profile-img {
-    flex: 1; /* Take up 1/3 of the available space */
-    padding-right: 50px; /* Adjust spacing between image and description */
+    flex: 1;
+    padding-right: 50px;
 }
 
+/* make profile pict rounded */
 #profile-img img {
     max-width: 100%;
     height: auto;
-    border-radius: 50%; /* Make the image round */
+    border-radius: 50%;
 }
 
 figcaption {
-    font-size: small;
-    font-style: italic;
     text-align: center;
-    color: #c2c8d0;
+    color: var(--text-color);
+    font-size: 12px;
+    font-style: italic;
 }
 
+/* adjusts the flexibility of profile-description within the flex container */
 #profile-description {
-    flex: 2; /* Take up 2/3 of the available space */
+    flex: 2;
 }
 
 #profile-description h2 {
     color: var(--secondary-color);
 }
 
+/* highlights marked text with yellow background that covers lower half of the text */
 mark {
     font-size: 1.8em;
     color: var(--primary-color);
     background: linear-gradient(to top, yellow 50%, transparent 50%);
 }
 
-#profile-description p {
-    line-height: 1.6;
+/* for paragraphs within the profile-description */
+article[id="profile-description"] > p {
+    line-height: 2;
 }
 
-#profile-description em {
+/* for emphashized element within paragraph in the profile-description */
+#profile-description > p > em {
     color: var(--primary-color);
     font-weight: bold;
 }
 
-#profile-description address {
+address {
     font-style: italic;
-    font-size: small;
+    font-size: 12px;
 }
 
+/* for buttons layout in profile-description */
 #profile-description aside {
     margin-top: 10px;
     display: flex;
@@ -206,16 +228,17 @@ mark {
     margin-right: 10px;
     margin-bottom: 10px;
     cursor: pointer;
-    color: #fff; 
+    color: #fff;
     border: none;
     border-radius: 28px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     font-family: Poppins;
-    width: max-content; /* Adjust the button width according to the content */
+    width: max-content;
 }
 
+/* enhances box shadow on hover for profile description buttons */
 #profile-description button:hover {
-    box-shadow: 0 0 15px rgba(52, 102, 170, 0.7); /* Glow effect on hover */ 
+    box-shadow: 0 0 15px rgba(52, 102, 170, 0.7);
 }
 
 #btn-github {
@@ -223,15 +246,16 @@ mark {
 }
 
 #btn-email {
-    background-color: #fe3b00; 
+    background-color: #fe3b00;
 }
 
-
-/* Education */
+/* EDUCATION Section */
+/* styling for education section */
 .education-section {
     align-items: left;
 }
 
+/* styling container box with rounded corners, padding, centered content, and a subtle shadow */
 fieldset {
     border-radius: 5px;
     padding: 20px;
@@ -239,13 +263,13 @@ fieldset {
     display: flex;
     align-items: center;
     width: 95%;
-    margin: 0px auto; 
+    margin: 0px auto;
     background-color: var(--container-background-color);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: Poppins, sans-serif;
-   
 }
 
+/* styling for a title within the fieldset/container (Education & Work Experiences) */
 fieldset legend {
     color: #fff;
     padding: 5px 10px ;
@@ -257,7 +281,7 @@ fieldset legend {
 }
 
 .education-list {
-    list-style-type: none;
+    list-style-type: none; 
     font-weight: bold;
 }
 
@@ -265,9 +289,10 @@ fieldset legend {
     margin-bottom: 20px;
     line-height: 2;
     display: flex;
-    border-bottom: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc; /* adds a dashed border at the bottom of each item */
 }
 
+/* styling for icon before education list items */
 .education-list li:before {
     font-family: 'FontAwesome';
     content: "\f192";
@@ -275,6 +300,7 @@ fieldset legend {
     margin-right: 10px;
 }
 
+/* styling for field of study*/
 .education-list li i {
     font-style: italic;
     color: #777;
@@ -283,12 +309,14 @@ fieldset legend {
     display: block; 
 }
 
+/* hover effect for education list items */
 .education-list li:hover {
     background-color: #f8f8f8;
-    cursor: default;
+    cursor: pointer;
     font-size: 1.2rem;
 }
 
+/* styling for odd and even education list items */
 .education-list li:nth-child(odd) {
     color: var(--primary-color);
 }
@@ -297,15 +325,16 @@ fieldset legend {
     color: var(--highlight-color);
 }
 
+/* WORK EXPERIENCES Section */
 
-/* Work Experiences */
-
+/* grid container layout. gap each grid 20px */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
 
+/* for work experience cards */
 .work-experience {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -316,16 +345,26 @@ fieldset legend {
     transition: box-shadow 0.3s ease;
 }
 
+/* adds a blue box shadow on hover in work-experience */
 .work-experience:hover {
-    box-shadow: 0 0 15px rgba(52, 102, 170, 0.7); 
+    box-shadow: 0 0 15px rgba(52, 102, 170, 0.7);
 }
 
+/* work experience titles */
 .work-experience h4 {
     font-size: 1.2rem;
     margin-bottom: 2px;
     color: var(--primary-color);
 }
 
+/* additional styling for the emphasized text following the h4 in work experience details */
+.work-experience h4 + em {
+    font-size: 0.9rem;
+    color: #999;
+    font-style: normal;
+}
+
+/* horizontal line styling */
 .work-experience hr {
     border: 0;
     width: 100%;
@@ -333,20 +372,15 @@ fieldset legend {
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.2));
 }
 
-.work-experience em {
-    font-style: italic;
-    color: #999;
-    font-size: medium;
-    font-style: normal;
-}
-
+/* work experience descriptions */
 .work-experience p {
     margin-top: 10px;
     line-height: 1.8;
     font-size: 14px;
 }
 
-.work-experience span {
+/* styling a span following a paragraph within work-experience (for work duration) */
+.work-experience p ~ span {
     margin-top: 10px;
     color: #a6a6a6;
     margin-top: auto;
@@ -355,7 +389,7 @@ fieldset legend {
     font-style: italic;
 }
 
-/* Motto */
+/* MOTTO Section */
 #motto {
     padding: 20px;
     text-align: center;
