@@ -3,80 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTJ Academy | About Me</title>
+    <title>BTJ Academy About Me</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
 </head>
 <body>
-    <!-- Header -->
-    <header align="center">
-        <h1>Welcome</h1>
+    <header>
+        <h1>About Me</h1>
+        <nav id="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+        </nav>
     </header>
 
-    <!-- Navbar -->
-    <nav align="center">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-    </nav>
-   
-    <hr width="80%">
-
-    <!-- Profile -->
-    <div>
-        <table border="0">
-            <tr>
-                <td>
-                    <figure>
-                        <img src="img/profile.jpg" alt="profile picture" width="250">
-                        <figcaption>Profile Picture</figcaption>
-                    </figure>
-                </td>
-                <td>
-                    <article>
-                        <hgroup>
-                            <h2><u>Hi, I'm <mark>Nur Fadhilah Sadrah</mark></u></h2>
-                            <p>
-                                A recent Informatics Engineering graduate and passionate <strong>Software Developer</strong>.
-                                With a keen eye for design and a knack for coding, I bring ideas to life by
-                                building <em>visually stunning</em> and <em>highly functional</em> web & mobile apps that
-                                not only captivate users with aesthetic appeal but also enhance overall user
-                                experience. I'm also interested in <abbr title="Artificial Intelligence">AI</abbr> and Machine Learning.
-                                In my free time, I enjoy listening to music, reading webtoons, <s>fangirling</s>, and watching variety shows.
-                            </p>
-                        </hgroup>
-                    </article>
-                   
-                    <address>
-                        <p>Gowa, South Sulawesi<br>
-                        Indonesia — 92113</p>
-                    </address>
-                   
-                    <aside>
-                        <button onclick="window.location.href='https://www.github.com/dhilasdrh'">Visit GitHub</button>
-                        <button onclick="window.location.href='mailto:dhilasdrh@gmail.com?subject=Greetings&body=Hello,%20Dhila!'">Email me</button>
-                    </aside>
-                </td>
-            </tr>
-        </table>
+    
+    <div id="profile-container" class="profile-container">
+        <div id="profile-img">
+            <img src="img/profile.jpg" alt="profile picture">
+            <figcaption>profile picture</figcaption>
+        </div>
+        <article id="profile-description">
+            <h2>Hi, my name is <br><mark>Nur Fadhilah Sadrah.</mark></h2>
+            <p>
+                A recent Informatics Engineering graduate and passionate <strong>Software Developer</strong>. With a keen eye for design and a knack for coding, I bring ideas to life by building <em>visually stunning and highly functional web & mobile apps</em> that not only captivate users with aesthetic appeal but also enhance overall user experience. I'm also interested in <abbr title="Artificial Intelligence">AI</abbr> and Machine Learning. In my free time, I enjoy listening to music, reading webtoons, <s>fangirling</s>, and watching variety shows.
+            </p>
+            <address>
+                <p>Gowa, South Sulawesi<br>
+                Indonesia — 92113</p>
+            </address>
+            <aside>
+                <button id="btn-github" onclick="window.location.href='https://www.github.com/dhilasdrh'">Visit GitHub</button>
+                <button id="btn-email" onclick="window.location.href='mailto:dhilasdrh@gmail.com?subject=Greetings&body=Hello,%20Dhila!'">Email me</button>
+            </aside>
+        </article>
     </div>
 
-    <!-- Education -->
     <section>
         <fieldset>
-            <legend><h3>Education</h3></legend>
-            <ul>
-                <li>UIN Alauddin Makassar — <i>Informatics Engineering </i></li>
-                <li>SMAN 1 Sungguminasa — <i>Math and Natural Science</i></li>
-                <li>SMPN 1 Sungguminasa </li>
-                <li>SDN Paccinongang Unggulan</li>
+        <legend><h3><mark>Education</mark></h3></legend>
+            <ul class="education-list">
+                <li>Universitas Islam Negeri Alauddin Makassar <i> — Informatics Engineering</i></li>
+                <li>SMA Negeri 1 Sungguminasa <i> — Math and Natural Science</i></li>
+                <li>SMP Negeri 1 Sungguminasa </li>
+                <li>SD Negeri Paccinongang Unggulan</li>
             </ul>
         </fieldset>
     </section>
-   
-    <!-- Work Experiences -->
-    <section>
+
+    <!--
+    <section id="work-container">
         <fieldset>
-            <legend><h3>Work Experiences</h3></legend>
-            <table cellspacing="5">
-                <thead align="left">
+            <legend><h3><mark>Work Experiences</mark></h3></legend>
+            <table>
+                <thead>
                     <tr>
                         <th>Mobile App Developer (Intern)</th>
                         <th>Web Developer (Intern)</th>
@@ -85,27 +64,25 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><em>Glolingo Indonesia</em></td>
-                        <td><em>IQR Foundation</em></td>
-                        <td><em>PT. Docotel Technology Celebes</em></td>
+                        <td><em>X Company</em></td>
+                        <td><em>Y Company</em></td>
+                        <td><em>Z Company</em></td>
                     </tr>
-                    <tr height="10"></tr>
                     <tr>
-                        <td valign="baseline">
+                        <td>
                             Contributed to the development of an AR Android app for language practice using <b>Kotlin</b> and <b>Firebase</b>.
                             Matchmaking based on user preferences like language proficiency, gender, or specific fields.
                         </td>
-                        <td valign="baseline">
+                        <td>
                             Redesigned IQR Foundation website. Utilized <b>Figma</b> for
                             design mockups and implemented the redesign using <b>WordPress</b> and <b>Elementor</b>, ensuring a modern and
                             user-friendly experience.
                         </td>
-                        <td valign="baseline">
+                        <td>
                             Collaborated with senior developers to implement scalable and efficient backend solutions for HR Information System using <b>Laravel</b>. Assisted in database management, utilizing <b>SQL</b> databases to organize and optimize data retrieval processes.
                         </td>
                     </tr>
                 </tbody>
-                <tr height="10"></tr>
                 <tfoot>
                     <tr>
                         <td>Aug 2020 - Oct 2020</td>
@@ -115,24 +92,105 @@
                 </tfoot>
             </table>
         </fieldset>
-    </section>
+    </section> 
 
-    <!-- Motto -->
-    <section align="center">
-        <br>
+    <section >
+        <fieldset>
+            <legend><h3><mark>Work Experiences</mark></h3></legend>
+            <table>
+                <tbody>
+                    <tr class="work-experience">
+                        <td>
+                            <div class="work-role">Mobile App Developer (Intern)</div>
+                            <div class="company"><em>Glolingo Indonesia</em></div>
+                            <hr>
+                            <div class="details">
+                                Contributed to the development of an AR Android app for language practice using <b>Kotlin</b> and <b>Firebase</b>.
+                                Matchmaking based on user preferences like language proficiency, gender, or specific fields.
+                            </div>
+                            <div class="date">Aug 2020 - Oct 2020</div>
+                        </td>
+                        <td>
+                            <div class="work-role">Web Developer (Intern)</div>
+                            <div class="company"><em>IQR Foundation</em></div>
+                            <hr>
+                            <div class="details">
+                                Redesigned IQR Foundation website. Utilized <b>Figma</b> for design mockups and implemented the redesign using 
+                                <b>WordPress</b> and <b>Elementor</b>, ensuring a modern and user-friendly experience.
+                            </div>
+                            <div class="date">Jul 2020 - Aug 2020</div>
+                        </td>
+                        <td>
+                            <div class="work-role">Back End Developer (Intern)</div>
+                            <div class="company"><em>PT Docotel Technology Celebes</em></div>
+                            <hr>
+                            <div class="details">
+                                Collaborated with senior developers to implement scalable and efficient backend solutions for HR Information System 
+                                using <b>Laravel</b>. Assisted in database management, utilizing <b>SQL</b> databases to organize and optimize data 
+                                retrieval processes.
+                            </div>
+                            <div class="date">Aug 2019 - Oct 2019</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </section> -->
+    
+    
+
+   
+    <section>
+        <fieldset>
+            <legend><h3><mark>Work Experiences</mark></h3></legend>
+            <div class="grid-container">
+                <div class="work-experience">
+                    <h4>Mobile App Developer (Intern)</h4>
+                    <em>Glolingo Indonesia</em>
+                    <hr>
+                    <p>
+                        Contributed to the development of an AR Android app for language practice using <b>Kotlin</b> and <b>Firebase</b>.
+                        Matchmaking based on user preferences like language proficiency, gender, or specific fields.
+                    </p>
+                    <span>Aug 2020 - Oct 2020</span>
+                </div>
+                <div class="work-experience">
+                    <h4>Web Developer (Intern)</h4>
+                    <em>IQR Foundation</em>
+                    <hr>
+                    <p>
+                        Redesigned IQR Foundation website. Utilized <b>Figma</b> for
+                        design mockups and implemented the redesign using <b>WordPress</b> and <b>Elementor</b>, ensuring a modern and
+                        user-friendly experience.
+                    </p>
+                    <span>Jul 2020 - Aug 2020</span>
+                </div>
+                <div class="work-experience">
+                    <h4>Back End Developer (Intern)</h4>
+                    <em>PT Docotel Technology Celebes</em>
+                    <hr>
+                    <p>
+                        Collaborated with senior developers to implement scalable and efficient backend solutions for HR Information System using <b>Laravel</b>. Assisted in database management, utilizing <b>SQL</b> databases to organize and optimize data retrieval processes.
+                    </p>
+                    <span>Aug 2019 - Oct 2019</span>
+                </div>
+            </div>
+        </fieldset>
+    </section>
+    
+
+    <section id="motto">
         <blockquote>
-            <h2><u>Learn. Grow. Succeed.</u></h2>
+            <h2><u><mark>Learn. Grow. Succeed.</mark></u></h2>
             <p>
                 <em><q>Every morning you have two choices: continue to sleep with your dreams, or wake up and chase them.</q></em>
-                <span>- Carmelo Anthony</span>
+                <span><br>- Carmelo Anthony</span>
             </p>
         </blockquote>
     </section>
 
-    <hr width="80%">
-
-    <footer align="center">
+    <footer>
         <p>&copy; 2023 BTJ Academy</p>
     </footer>
-
 </body>
+</html>
