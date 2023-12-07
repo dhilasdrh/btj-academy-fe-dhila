@@ -5,7 +5,7 @@
     --highlight-color: #3793BC;
     --background-color: #f0f0f0;
     --text-color: #212529;
-    --box-shadow-color: rgba(0, 0, 0, 0.1);
+    --box-shadow-color: rgba(5, 2, 2, 0.1);
     --hover-glow-color: rgba(52, 102, 170, 0.7);
 }
 
@@ -33,7 +33,7 @@ header {
     color: var(--accent-color);
 }
 
-a.active {
+#navbar > a.active {
     color: var(--primary-color);
     font-weight: bolder;
     border-bottom: 4px solid var(--highlight-color);
