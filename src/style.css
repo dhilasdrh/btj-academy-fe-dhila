@@ -98,6 +98,7 @@ input[type="text"], input[type="password"] {
     margin-bottom: 10px;
     border: 1px solid #c2c8d0;
     padding: 12px;
+    font-family: Poppins;
     border-radius: 3px;
 }
 
