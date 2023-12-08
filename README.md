@@ -4,7 +4,7 @@
 >-  Add your CSS.
 >- Use as many CSS property as you can.
 
-## CSS Properties 
+## CSS Selectors and Properties 
 
 ### Root Variables
 
