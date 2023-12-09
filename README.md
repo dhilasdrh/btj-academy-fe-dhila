@@ -87,9 +87,10 @@ The `:root` pseudo-class is used to define global CSS variables that can be reus
  - `#motto`: styling the motto section with padding and center alignment.
 
 ## Screenshots (Task 2)
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/task2-result.gif" >
 
 ### Login Page
-<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/ss-css-login.png">
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/ss-css-login.png" width="80%">
 
 ### About Me Page
-<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/ss-css-about.jpg">
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/ss-css-about.jpg" width="80%">
