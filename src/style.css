@@ -16,6 +16,7 @@ header {
     background-color: var(--primary-color);
     color: white;
     text-align: center;
+    font-size: 18px;
 }
 
 /* for centered navbar */
@@ -31,12 +32,8 @@ header {
 #navbar > a {
     text-decoration: none;
     color: white;
+    font-size: 14px;
     padding: 10px 20px;
-}
-
-/* change color on hover for navbar links */
-#navbar > a:hover {
-    color: var(--accent-color);
 }
 
 /* highlight active link in the navbar */
@@ -44,6 +41,12 @@ header {
     color: var(--primary-color);
     font-weight: bolder;
     border-bottom: 4px solid var(--highlight-color);
+}
+
+/* change color on hover for navbar links */
+#navbar > a:hover, a.active {
+    color: var(--accent-color);
+    font-weight: bolder;
 }
 
 h1 {
