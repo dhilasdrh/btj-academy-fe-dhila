@@ -5,46 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTJ Academy</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Welcome</h1>
-        <nav id="navbar">
-            <a href="index.html" class="active">Home</a>
-            <a href="about.html">About</a>
-        </nav>
-    </header>
-
-    <div id="main-container">
-        <div class="welcome-login">
-            <h2>Welcome to Our Landing Page</h2>
-            <p>Please login to access other features</p>
-        </div>
-        
-        <div id="login-container">
-            <form action="about.html">
-                <div>
-                    <label for="username">Username:</label>
-                    <input type="text" placeholder="Enter your username" required>
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input type="password" placeholder="Enter your password" required>
-                </div>
-                <div>
-                    <button id="login-button" type="submit">Login</button>
-                </div>
-            </form>
-        </div>
+    <div class="main-container">
+        <header>
+            <div class="logo">
+                <img src="img/illustration.png" alt="logo">
+                <h1>Welcome</h1>
+            </div>
+            <nav class="navbar">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+            </nav>
+        </header>
     
-        <img id="img-login" src="img/illustration.jpg" alt="computer image illustration" width="250">
+        <div class="content-container fade-animation">
+            <div class="left-container">
+                <div class="welcome-login">
+                    <h2>Welcome to Our Landing Page</h2>
+                    <p>Please login to access other features</p>
+                </div>
+                
+                <div class="login-container">
+                    <form action="about.html">
+                        <div>
+                            <label for="username">Username:</label>
+                            <input type="text" placeholder="Enter your username" required>
+                        </div>
+                        <div>
+                            <label for="password">Password:</label>
+                            <input type="password" placeholder="Enter your password" required>
+                        </div>
+                        <div>
+                            <button class="login-button" type="submit">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="right-container">
+                <img class="img-login" src="img/illustration.png" alt="computer image illustration" width="250">
+                
+                <section class="quote">
+                    <p>"The only limit to our realization of tomorrow will be our doubts of today." - Franklin D. Roosevelt</p>
+                </section>
+            </div>
+        </div>
         
-        <section class="quote">
-            <p>"The only limit to our realization of tomorrow will be our doubts of today." - Franklin D. Roosevelt</p>
-        </section>
+        <footer>&copy; 2023 BTJ Academy</footer>
     </div>
-    
-    <footer>&copy; 2023 BTJ Academy</footer>
 </body>
 </html>

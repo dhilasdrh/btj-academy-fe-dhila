@@ -1,229 +1,284 @@
-/* define root-level CSS variables for color scheme */
 :root {
-    --primary-color: #3466aa;
-    --secondary-color: #333;
-    --accent-color: #15ace7;
-    --highlight-color: #3793BC;
-    --background-color: #f0f0f0;
-    --container-background-color: #f8f8f8;
-    --text-color: #212529;
-    --box-shadow-color: rgba(5, 2, 2, 0.1);
-    --hover-glow-color: rgba(52, 102, 170, 0.7);
+    --primary-color : #4161d3;
+    --secondary-color : #424987;
+    --accent-color : #3cabe1;
+    --highlight-color : #ee741a;
+    --black-color: #333;
+    --box-background-color: #f8f8f8;
+    --normal-text-size: 14px;
+    --small-text-size: 12px;
+    --blue-box-shadow: 0 0 15px rgba(52, 102, 170, 0.7);
+    --transition: color 0.3s ease;
 }
 
-/* for centered header */
-header {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
+* {
+    font-family: 'DM Sans', sans-serif;
+    box-sizing: border-box;
 }
 
-/* for centered navbar */
-#navbar {
-    background-color: var(--secondary-color);
-    color: white;
-    width: 100%;
+html {
+    scroll-behavior: smooth;
+}
+  
+body {
+    background-image: url('img/bg.jpg');
+    /*background-color: var(--secondary-color);*/
+    background-size: cover; 
+    margin: 0;
+    padding: 0;
+    color: var(--black-color);
+    height: 100vh;
     display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 
-/* for links (menu item) in navbar */
-#navbar > a {
-    text-decoration: none;
-    color: white;
-    padding: 10px 20px;
+.main-container {
+    margin: 30px;
+    background: var(--box-background-color);
+    border-radius: 20px;
+    overflow: auto;
+    height: 90vh;
+    flex: 1;
+    padding: 20px 30px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+                 rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
-/* change color on hover for navbar links */
-#navbar > a:hover {
-    color: var(--accent-color);
-}
-
-/* highlight active link in the navbar */
-#navbar > a.active {
-    color: var(--primary-color);
-    font-weight: bolder;
-    border-bottom: 4px solid var(--highlight-color);
-}
-
-h1 {
-    margin: 0;
-    padding: 20px;
-}
-
-body {
-    font-family: Poppins, Verdana, Geneva, Tahoma, sans-serif;
-    margin: 0;
-    padding: 0;
+/* Header */
+header {
     display: flex;
-    background-color: var(--background-color);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.logo > img {
+    max-width: 50px;
+}
+
+.logo > h1 {
+    font-size: 1.5em;
+    color: var(--secondary-color);
+}
+
+.navbar {
+    display: flex;
+    padding: 8px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--black-color);
+    margin-right: 30px;
+}
+
+.navbar a:last-child {
+    margin-right: 0;
+    padding-right: 0;
+}
+
+.navbar a.active {
+    font-weight: bold;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.navbar a:hover {
+    color: var(--secondary-color);
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+/* Content */
+.content-container {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin: 200 auto; 
+    padding: 20px; 
+}
+
+/* Left Container */
+.left-container, .right-container {
     flex-direction: column;
-    min-height: 100vh;
-    color: var(--text-color);
-}
-
-/* styling for the main container */
-#main-container {
-    background-color: var(--container-background-color);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px;
-    text-align: center;
-}
-
-/* styling for login section */
-.welcome-login {
-    text-align: left;
-    margin: 0px 10px;
-}
-
-/* styling for the login container */
-#login-container {
-    display: inline-block;
-    text-align: left;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    flex: 1;
     padding: 10px;
 }
 
-/* styling for labels, inputs, and buttons */
-label, input, button {
-    width: 300px;
+.left-container {
+    background-color: rgb(161,209,245, 0.2);
+    box-shadow: 0 0 10px rgba(52, 102, 170, 0.3);
+    padding: 30px 50px;
+    border-radius: 5px;
+}
+
+.login-container {
     display: block;
+    border-radius: 5px;
+}
+
+.welcome-login > h2 {
+    color: #424987;
+}
+
+label, input, button {
+    width: 100%;
     margin: 5px 0;
+    padding: 15px 0;
 }
 
-/* styling for text inputs */
 input[type="text"], input[type="password"] {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    width: calc(100% - 15px);
     border: 1px solid #c2c8d0;
-    padding: 12px;
-    border-radius: 3px;
+    border-radius: 5px;
+    padding-left: 10px;
 }
 
-/* add outline and box shadow with primary color (blue) when user type or put the cursor in the input field */
 input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 10px var(--primary-color);
+    box-shadow: var(--blue-box-shadow);
+    transition: var(--transition);
 }
 
 label {
-    text-align: 12px;
-    color: var(--secondary-color);
-    font-size: 1em;
+    font-size: var(--normal-text-size);
 }
 
-#login-button {
+.login-button {
     background-color: var(--primary-color);
     color: white;
-    width: 100%;
-    margin-top: 18px;
-    padding: 10px;
+    margin-top: 8px;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     font-family: Poppins;
+    text-transform: uppercase;
 }
 
-/* changes background color and cursor on hover for login button */
-#login-button:hover {
-    background-color: rgb(13, 47, 121);
+/* enhances blue box shadow on hover for buttons */
+button:hover {
+    box-shadow: var(--blue-box-shadow);
     cursor: pointer;
 }
 
-#img-login {
-    display: block;
-    margin: 20px auto;
+/* Right Container */
+.right-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.img-login {
     max-width: 100%;
 }
 
-/* center-aligns and italicizes the text within the quote */
-.quote {
-    text-align: center;
+.quote > p {
     font-style: italic;
-}
-
-footer {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 0.5em 0;
-    font-size: 14px;
-    margin-top: auto;
+    font-size: var(--normal-text-size);
+    padding: 0 10px;
     text-align: center;
 }
 
-/* ABOUT ME Section */
-
-#profile-container {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    width: 95%;
-    background-color: var(--container-background-color);
-    margin: 20px auto; /* Center the container */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Footer */
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: var(--small-text-size);
+    letter-spacing: 2px;
 }
 
-/* allowing the profile img to grow or shrink within the flex container */
-#profile-img {
+/* Profile */
+.profile-container {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.profile-img {
     flex: 1;
-    padding-right: 50px;
+}
+
+.profile-container .profile-wrapper {
+    position: relative;
+    border: 2px solid var(--secondary-color);
+    border-radius: 50%;
+    padding: 10px;
+    overflow: hidden;
+  }
+
+.profile-container .profile-img {
+    max-width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
 }
 
 /* make profile pict rounded */
-#profile-img img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 50%;
+.profile-img img {
+    width: 300px;
 }
 
 figcaption {
     text-align: center;
     color: var(--text-color);
-    font-size: 12px;
+    font-size: var(--small-text-size);
     font-style: italic;
 }
 
 /* adjusts the flexibility of profile-description within the flex container */
-#profile-description {
+.profile-description {
     flex: 2;
+    margin-left: 20px;
 }
 
-#profile-description h2 {
+.profile-description h2 {
     color: var(--secondary-color);
+    font-size: 1em;
 }
 
 /* highlights marked text with yellow background that covers lower half of the text */
 mark {
-    font-size: 1.8em;
+    font-size: 2em;
+    font-family: Poppins;
     color: var(--primary-color);
     background: linear-gradient(to top, yellow 50%, transparent 50%);
 }
 
 /* for paragraphs within the profile-description */
-article[id="profile-description"] > p {
-    line-height: 2;
+article[class="profile-description"] > p {
+    line-height: 1.8;
+    font-size: 1em;
 }
 
 /* for emphashized element within paragraph in the profile-description */
-#profile-description > p > em {
+.profile-description > p > em {
     color: var(--primary-color);
     font-weight: bold;
+    font-style: normal;
 }
 
 address {
     font-style: italic;
-    font-size: 12px;
+    font-size: var(--small-text-size);
 }
 
 /* for buttons layout in profile-description */
-#profile-description aside {
+.profile-description aside {
     margin-top: 10px;
     display: flex;
-    flex-wrap: wrap;
 }
 
-#profile-description button {
+.profile-description button {
     padding: 10px 30px;
     margin-right: 10px;
     margin-bottom: 10px;
@@ -233,20 +288,19 @@ address {
     border-radius: 28px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     font-family: Poppins;
-    width: max-content;
 }
 
-/* enhances box shadow on hover for profile description buttons */
-#profile-description button:hover {
-    box-shadow: 0 0 15px rgba(52, 102, 170, 0.7);
+.btn-github {
+    background-color: var(--secondary-color);
 }
 
-#btn-github {
-    background-color: var(--highlight-color);
+.btn-email {
+    background-color: var(--primary-color);
 }
 
-#btn-email {
-    background-color: #fe3b00;
+.btn-email:hover, .btn-github:hover {
+    box-shadow: var(--blue-box-shadow);
+    transition: var(--transition);
 }
 
 /* EDUCATION Section */
@@ -260,20 +314,18 @@ fieldset {
     border-radius: 5px;
     padding: 20px;
     border: none;
-    display: flex;
-    align-items: center;
-    width: 95%;
-    margin: 0px auto;
-    background-color: var(--container-background-color);
+    flex-wrap: wrap;
+    margin: 20px auto;
+    /*box-shadow: 0 0 10px rgba(52, 102, 170, 0.3);
+    background-color: rgb(161,209,245, 0.2);*/
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: Poppins, sans-serif;
 }
 
 /* styling for a title within the fieldset/container (Education & Work Experiences) */
 fieldset legend {
     color: #fff;
     padding: 5px 10px ;
-    font-size: 0.8em;
+    font-size: 3vh;
     border-radius: 5px;
     margin-left: 20px;
     text-transform: uppercase;
@@ -286,33 +338,34 @@ fieldset legend {
 }
 
 .education-list li {
-    margin-bottom: 20px;
-    line-height: 2;
+    padding: 8px 0;
     display: flex;
+    align-items: center;
     border-bottom: 1px dashed #ccc; /* adds a dashed border at the bottom of each item */
 }
 
+
 /* styling for icon before education list items */
 .education-list li:before {
-    font-family: 'FontAwesome';
-    content: "\f192";
-    color: #555;
-    margin-right: 10px;
+    content: "\f144"; 
+    font-family: 'Font Awesome 5 Free'; 
+    margin-right: 10px; 
+    color: var(--secondary-color); 
 }
 
 /* styling for field of study*/
-.education-list li i {
-    font-style: italic;
+.education-list li div {
+    margin-top: 5px;
     color: #777;
     font-weight: normal;
-    display: block; 
+    font-size: 14px;
+    font-style: italic;
 }
 
 /* hover effect for education list items */
 .education-list li:hover {
     background-color: #f8f8f8;
-    cursor: pointer;
-    font-size: 1.2rem;
+    font-size: larger;
 }
 
 /* styling for odd and even education list items */
@@ -321,50 +374,50 @@ fieldset legend {
 }
 
 .education-list li:nth-child(even) {
-    color: var(--highlight-color);
+    color: var(--secondary-color);
 }
+
 
 /* WORK EXPERIENCES Section */
 
 /* grid container layout. gap each grid 20px */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjust the minmax values as needed */
     gap: 20px;
 }
 
 /* for work experience cards */
-.work-experience {
+.work-experiences {
     border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 10px 30px;
+    padding: 10px 25px 25px;
+    background-color: var(--box-background-color);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
     transition: box-shadow 0.3s ease;
 }
 
 /* adds a blue box shadow on hover in work-experience */
-.work-experience:hover {
+.work-experiences:hover {
     box-shadow: 0 0 15px rgba(52, 102, 170, 0.7);
 }
 
 /* work experience titles */
-.work-experience h4 {
+.work-experiences h4 {
     font-size: 1.2rem;
     margin-bottom: 2px;
     color: var(--primary-color);
 }
 
 /* additional styling for the emphasized text following the h4 in work experience details */
-.work-experience h4 + em {
+.work-experiences h4 + em {
     font-size: 0.9rem;
     color: #999;
     font-style: normal;
 }
 
 /* horizontal line styling */
-.work-experience hr {
+.work-experiences hr {
     border: 0;
     width: 100%;
     height: 1px;
@@ -372,24 +425,222 @@ fieldset legend {
 }
 
 /* work experience descriptions */
-.work-experience p {
+.work-experiences p {
     margin-top: 10px;
     line-height: 1.8;
     font-size: 14px;
 }
 
 /* styling a span following a paragraph within work-experience (for work duration) */
-.work-experience p ~ span {
-    margin-top: 10px;
+.work-experiences p ~ span {
     color: #a6a6a6;
-    margin-top: auto;
-    margin-bottom: 10px;
+    margin: 30px auto;
     font-size: small;
     font-style: italic;
 }
 
 /* MOTTO Section */
 #motto {
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+}
+
+#motto mark {
+    font-size: 40px;
+}
+
+/* Define the fade-in animation */
+@keyframes fadeAnimation {
+    from {
+      opacity: 0;
+      transform: translateY(20px); 
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
+  
+.fade-animation {
+    opacity: 0;
+    animation: fadeAnimation 1s ease-in-out forwards;
+    animation-play-state: paused;
+}
+  
+.content-container, .profile-container, .education-section, .work-experiences, #motto {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.content-container.fade-animation, .profile-container.fade-animation, 
+.education-section.fade-animation, 
+.work-experiences.fade-animation, 
+#motto.fade-animation {
+  animation-play-state: running;
+}
+
+/* Keyframes for the orbit animation */
+@keyframes orbit1 {
+    from {
+      transform: rotate(0deg) translateX(100px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(100px) rotate(-360deg);
+    }
+}
+  
+@keyframes orbit2 {
+    from {
+      transform: rotate(0deg) translateY(100px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateY(100px) rotate(-360deg);
+    }
+}
+  
+@keyframes orbit3 {
+    from {
+      transform: rotate(0deg) translateX(-100px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(-100px) rotate(-360deg);
+    }
+}
+
+/* Orbiting circles styling */
+.orbit-circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    animation-duration: 3s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  
+/* Positioning each orbiting circle */
+.orbit-circle:nth-child(1) {
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 10%;
+    animation-name: orbit1;
+}
+  
+.orbit-circle:nth-child(2) {
+    width: 15px;
+    height: 15px;
+    top: 10%;
+    left: 50%;
+    animation-name: orbit2;
+}
+  
+.orbit-circle:nth-child(3) {
+    width: 25px;
+    height: 25px;
+    top: 90%;
+    left: 80%;
+    animation-name: orbit3;
+}
+
+
+/*media queries */
+
+/* for small screen (mobile) */
+@media (max-width: 700px){
+    .main-container {
+        height: auto;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo, .navbar {
+        justify-content: center;
+    }
+
+    .navbar {
+        margin-top: 0;
+        width: 100%;
+    }
+
+    .navbar > a {
+        font-size: 18px;
+        margin: 0 15px;
+    }
+
+    .logo > h1 {
+        font-size: 2rem;
+    }
+
+    .content-container {
+        flex-direction: column;
+    }
+
+    .left-container,
+    .right-container {
+          width: 100%;
+          padding: 20px;
+    }
+
+    label, input, button {
+        font-size: var(--normal-text-size);
+    }
+
+    .btn-email, .btn-github {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .welcome-login {
+        font-size: 3.5vw;
+    }
+
+    fieldset legend {
+        font-size: 70%;
+    }
+
+    .profile-container {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .profile-img {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .profile-img img {
+        max-width: 100%;
+        border-radius: 50%;
+    }
+
+    .profile-description > h2, p {
+        font-size: 1em;
+    }
+
+    #motto h2 {
+        font-size: 30px;
+    }
+
+    #motto p {
+        font-size: 14px;
+    }   
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* for desktop / wide screen */
+@media (min-width: 1000px){
+    .main-container {
+        margin: 50px;
+        max-width: 1000px;
+    }
+
+    fieldset legend {
+        font-size: 70%;
+    }
 }
