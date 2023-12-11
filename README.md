@@ -1,12 +1,12 @@
 # Task 3 Web Basic (Responsive Web)
 
+>- Update the About Page from previous meeting. 
+>- Modify your CSS with the one we learn today! 
+>- Use as many CSS property as you can.
+
 ## Result 
 
-### Login Page
-<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/ss-task3-login.JPG" width="80%">
-
-### About Me Page
-<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/ss-task3-about.JPG" width="80%">
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/task3-result.gif">
 
 ### Variables (`:root`):
 
