@@ -8,6 +8,8 @@
 
 <img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/task3-result.gif">
 
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/task3-responsive-result.gif" width="80%">
+
 ### Variables (`:root`):
 
 -   Sets global CSS variables for various colors, text sizes, box shadows, and transition timing.
