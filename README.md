@@ -6,14 +6,20 @@
 
 Clicking on the logo triggers a 360-degree rotation animation.
 
-    document.getElementById('logo-img').addEventListener('click', function () {
-        this.style.transitionDuration = '1s';
-        this.style.transform += ' rotate(360deg)';
-    });
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/rotate-logo.gif">
+
+    let degree = 0;
+	document.getElementById('logo-img').addEventListener('click', function() {
+	    degree += 360; 
+	    this.style.transform =`rotate(${degree}deg)`; 
+	    this.style.transitionDuration = '1s';
+	});
 
 ###  Password Visibility Toggle
 
 A checkbox enables users to toggle password visibility in the input field. This function dynamically changes the password input field's type to either show or hide the entered characters based on the checkbox state.
+
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/show-password.gif">
 
     function toggleShowPassword() {
             passwordCheckbox = document.getElementById("show-password");
@@ -21,6 +27,14 @@ A checkbox enables users to toggle password visibility in the input field. This 
     }
 
 ### Login Form Validation
+
+Username and password input validation and caps lock warning.
+
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/input-validation.gif">
+
+User cant access about page without inputing valid username and password. Will display error messages prompting them to correct their input.
+
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/login-validation.gif">
 
 **Event Listeners:**
 
@@ -39,6 +53,10 @@ Called when attempting to submit the login form. It prevents the default form su
 		e.preventDefault();
 		validateUsername();
 		validatePassword();
+
+    		if (username && isPasswordValid(password)) {
+	       		window.location.href = "about.html";
+	    	} 
 	}
 
 **Username Validation Function (`validateUsername`):**
@@ -111,10 +129,11 @@ Check whether the caps lock key is active and displays a warning if it is.
 	    capslockWarning.style.display = isCapsLockOn ? 'block': 'none';
     }
 
-
 ### Dynamic Theming (Toggle Light/Dark Mode)
 
 The application allows users to switch between light and dark modes using a toggle switch. This functionality is stored in local storage, ensuring the preferred mode is retained upon revisits. 
+
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/mode-switch.gif">
 
 Dark mode  styles are defined under `:root[data-theme="dark"]` to change the color scheme when dark mode is enabled. CSS variables are used for easy theming, allowing for a quick switch between dark and light modes.
 
@@ -162,6 +181,8 @@ The JavaScript code initializes the state based on the value stored in local sto
 ### Animated Sections
 
 The page includes animated sections that trigger animation effects when scrolled into view. The animations utilize the Intersection Observer API to detect when elements become visible in the viewport, triggering specific animations like sliding in from the left or right with opacity changes.
+
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/animation.gif">
 
 ### Animations
 
@@ -232,6 +253,8 @@ Several keyframe animations, such as fadeAnimation, slideHorizontal, slideInLeft
 ### Media Queries (Responsive Web)
 
 The styling is adjusted for different screen sizes using media queries.
+
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/responsive.gif">
 
     /* Media Queries */
     @media (max-width: 700px) {
