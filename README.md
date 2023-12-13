@@ -1,88 +1,242 @@
-# Task 3 Web Basic (Responsive Web)
+# Task 4 Web Basic (JavaScript)
 
->- Update the About Page from previous meeting. 
->- Modify your CSS with the one we learn today! 
->- Use as many CSS property as you can.
+##   Logo Rotation
 
-## Result 
+Clicking on the logo triggers a 360-degree rotation animation.
 
-<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/task3-result.gif">
+    document.getElementById('logo-img').addEventListener('click', function () {
+        this.style.transitionDuration = '1s';
+        this.style.transform += ' rotate(360deg)';
+    });
 
-<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/task3-responsive-result.gif" width="80%">
+##  Password Visibility Toggle
 
-### Variables (`:root`):
+A checkbox enables users to toggle password visibility in the input field. This function dynamically changes the password input field's type to either show or hide the entered characters based on the checkbox state.
 
--   Sets global CSS variables for various colors, text sizes, box shadows, and transition timing.
+    function toggleShowPassword() {
+            passwordCheckbox = document.getElementById("show-password");
+            passwordInput.type = passwordCheckbox.checked ? "text" : "password";
+    }
 
-### General Styles (`*`):
+## Login Form Validation
 
-Applies styles to all elements on the page.
+### Event Listeners
 
--   `box-sizing: border-box;`: ensures that padding and border are included in the element's total width and height.
--   `font-family: 'DM Sans', sans-serif;`: sets the default font for the entire document.
--   `scroll-behavior: smooth;`: adds smooth scrolling behavior for anchor links.
--   `background-image`: applies a background image to the body.
+The `validateUsername` function is called when there's an 'input' event on the username field, `validatePassword` is called on 'input' events on the password field, and `checkCapsLock` is triggered when the user releases a key ('keyup' event) in the password field
 
-### Main Container Styles:
+    // event listeners (input and capslock)
+	usernameInput.addEventListener('input', validateUsername);
+	passwordInput.addEventListener('input', validatePassword);
+	passwordInput.addEventListener('keyup', checkCapsLock);
 
--   `display: flex;`: uses flexbox for layout.
--   `justify-content`, `align-items`: centers content both horizontally and vertically.
--   `box-shadow`: adds a subtle shadow effect.
+### Validate Login Function (`validateLogin`)
 
-### Header Styles:
+Called when attempting to submit the login form. It prevents the default form submission behavior, validates the username and password, and redirects to a new page if both are valid.
 
--   Flex container with space between items for the header.
--   Logo styling, including image size and header styles.
--   Navigation bar styling with links, active states, and hover effects.
+    function validateLogin(e) {
+		e.preventDefault();
+		validateUsername();
+		validatePassword();
+	}
 
-### Content Container Styles:
+### Username Validation Function (`validateUsername`)
 
--   Flex container for content with space between items.
+Validates the username input, checking if it is empty. Displaying error message and apply red box shadow in the input field if the password not valid.
 
-### Left Container Styles:
+    function validateUsername() {
+	    let username = usernameInput.value.trim();
+	    let errorMessage = username === "" ? "Please fill the username correctly." : "";
+	    
+	    showError(usernameInput, errorMessage)
+	}
 
--   Background color, box shadow, padding for the left container.
--   Styles for the login container, labels, inputs, buttons, and focus effects.
--   Emphasis on the login button hover effect.
+### Password Validation Function (`validatePassword`) 
 
-### Right Container Styles:
+Validates the password input, checking if it is empty and if it meets the specified conditions. Displaying error message and red box shadow in the input field if the password not valid.
 
--   Flex container with center-aligned items.
--   Styles for images, quotes, and paragraphs.
+    // Password Validation
+    function validatePassword() {
+        let password = passwordInput.value.trim();
+        let isValid = isPasswordValid(password);
+        let errorMessage = "";
 
-### Footer Styles:
+	    if (password === "") {
+	        errorMessage = "Please fill the password correctly.";
+	    } else if (!isValid) {
+	        errorMessage = passwordError.innerHTML;
+	    }
 
--   Margin, text alignment, font size, and letter spacing for the footer.
+	    showError(passwordInput, errorMessage);
+	}
 
-### Profile Styles:
+### Check Password Validation Function (`isPasswordValid`)
 
--   Padding, flex layout, and border radius for the profile container.
--   Styles for the profile image, description, buttons, and additional styles for various profile details.
+Checks if the password meets certain conditions (at least one uppercase letter, one lowercase letter, one number, and one symbol). Will return error message if the password doesn't meet the criteria.
 
-### Education Section Styles:
+    function isPasswordValid(password) {
+        const conditions = [
+            { regex: /[A-Z]/, message: 'one uppercase letter' },
+            { regex: /[a-z]/, message: 'one lowercase letter' },
+            { regex: /\d/, message: 'one number' },
+            { regex: /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/, message: 'one symbol' }
+        ];
+        
+	// filter conditions that are not met by the password
+    const unmetConditions = conditions.filter(condition => !condition.regex.test(password));
+	
+	// if there are unmet conditions, generate an error message
+    if (unmetConditions.length > 0) {
+        const errorMessage = `Password needs to have ${unmetConditions
+            .map(({ message }) => message)
+            .join(', ')
+            .replace(/,([^,]*)$/, `${unmetConditions.length > 2 ? ', and$1' : ' and$1'}`)}.`;
 
--   Styles for the education section, fieldset, legend, and education list.
--   List item styling, icons, and hover effects.
--   Different styling for odd and even list items.
+        passwordError.innerHTML = errorMessage;
+        return false;
+	    } else {
+		    // if all conditions are met, the password is considered valid
+	        return true;
+	    }
+	}
+    
+### Check Caps Lock Function (`checkCapsLock`)
 
-### Work Experiences Styles:
+Check whether the caps lock key is active and displays a warning if it is.
 
--   Grid container layout and gap for work experiences.
--   Card styling for work experiences with box shadow and transitions.
--   Styles for titles, emphasis, horizontal lines, descriptions, and spans.
+    // Check Capslock
+    function  checkCapsLock(event) {
+	    const isCapsLockOn = event.getModifierState('CapsLock');
+	    capslockWarning.style.display = isCapsLockOn ? 'block': 'none';
+    }
 
-### Motto Section Styles:
 
--   Padding and text alignment for the motto section.
--   Styling for the mark element within the motto section.
+## Dynamic Theming (Toggle Light/Dark Mode)
 
-### Animations:
+The application allows users to switch between light and dark modes using a toggle switch. This functionality is stored in local storage, ensuring the preferred mode is retained upon revisits. 
 
--   `@keyframes fadeAnimation`: Defines a fade-in animation.
--   `@keyframes orbit1, orbit2, orbit3`: Defines orbit animations for circles.
--   Orbiting circle styling with positioning and animation properties.
+Dark mode  styles are defined under `:root[data-theme="dark"]` to change the color scheme when dark mode is enabled. CSS variables are used for easy theming, allowing for a quick switch between dark and light modes.
 
-### Media Queries:
+	    :root {
+	        --primary-color: #4161d3;
+	        --secondary-color: #424987;
+	        --accent-color: #3cabe1;
+	        --highlight-color: #ee741a;
+	        --black-color: #333;
+	        --main-background-color: #f8f8f8;
+	        --box-background-color: #f2f2f2;
+	        // ...
+	    }
+	    
+	    /* Dark mode */
+	    :root[data-theme="dark"] {
+	        --primary-color: #4a90e2;
+	        --secondary-color: #4b74e6;
+	        --accent-color: #5095cc;
+	        // ...
+	    }`
 
--   Adjustments for mobile screens (max-width: 700px) and desktop screens (min-width: 1000px).
--   Changes include modifications to container heights, font sizes, and layout adjustments for better responsiveness.
+The JavaScript code initializes the state based on the value stored in local storage, updates the theme accordingly, and listens for a click event on the toggle switch to toggle between the modes. The state is saved in local storage to persist the user's preference across page reloads.
+
+    window.onload = function () {
+        // ---- Mode Switch  ----- //
+        const toggleSwitch = document.querySelector('.toggle-switch');
+        const hiddenCheckbox = document.getElementById('dark-mode-toggle');
+    
+        // check local storage for the dark mode preference
+        const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+    
+        // set the initial theme based on the local storage
+        document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        hiddenCheckbox.checked = isDarkMode;
+    
+        toggleSwitch.addEventListener('click', () => {
+            const isDarkMode = !hiddenCheckbox.checked;
+            // Save the dark mode state to local storage
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+            document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+            hiddenCheckbox.checked = isDarkMode;
+        });
+
+## Animations
+
+The page includes animated sections that trigger animation effects when scrolled into view. The animations utilize the Intersection Observer API to detect when elements become visible in the viewport, triggering specific animations like sliding in from the left or right with opacity changes.
+
+Several keyframe animations, such as fadeAnimation, slideHorizontal, slideInLeft, and slideInRight, are defined for various elements.
+	    
+    .content-container {
+	animation: slideHorizontal 0.5s ease-in-out;
+	}
+ 
+    .fade-animation {
+        opacity: 0;
+        animation: fadeAnimation 0.5s ease-in-out forwards;
+    }
+    
+    .animated-section {
+        opacity: 0;
+        animation: none;
+    }
+    
+    
+    /* animation */
+    @keyframes fadeAnimation {
+        from {
+          opacity: 0;
+          transform: translateY(20px); 
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+    }
+    
+    @keyframes slideHorizontal {
+        from {
+            transform: translateX(-200px);
+        }
+        to {
+            transform: translateX(0px);
+        }
+    }
+            
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-200px) scale(.2);
+        }
+        to {
+            transform: translateX(0px) scale(1);
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            transform: translateX(200px) scale(.2);
+        }
+        to {
+            transform: translateX(0px) scale(1);
+        }
+    }
+    
+    @keyframes slideUp {
+        0% {
+            transform: translateY(5px);
+        }
+    }
+
+## Media Queries (Responsive Web)
+
+The styling is adjusted for different screen sizes using media queries.
+
+    /* Media Queries */
+    @media (max-width: 700px) {
+        // Styles for mobile devices with max width 700px
+    }
+    
+    @media (max-width: 850px) {
+        // Styles for screens with max width 850px
+    }
+    
+    @media screen and (min-width: 1000px) {
+        // Styles for desktop/wide screens
+    }
+
