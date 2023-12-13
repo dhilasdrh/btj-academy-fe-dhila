@@ -50,9 +50,11 @@ window.onload = function () {
 };
 
 /* ------- ROTATE LOGO 360 DEGREE ------ */
+let degree = 0;
 document.getElementById('logo-img').addEventListener('click', function() {
+    degree += 360; 
+    this.style.transform =`rotate(${degree}deg)`; 
     this.style.transitionDuration = '1s';
-    this.style.transform += ' rotate(360deg)';
 });
 
 /* ------- SHOW PASSWORD CHECKBOX ------ */
