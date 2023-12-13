@@ -7,25 +7,32 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <script defer src="script.js"></script>
 </head>
 <body>
     <div class="main-container">
         <header>
             <div class="logo">
-                <img src="img/illustration.png" alt="logo">
+                <img id="logo-img" src="img/illustration.png" alt="logo">
                 <h1>Welcome</h1>
             </div>
             <nav class="navbar">
-                <a href="index.html">Home</a>
-                <a href="about.html"  class="active">About</a>
+                <a class="nav-item" href="index.html">Home</a>
+                <a href="about.html" class="nav-item active">About</a>
+                <div class="mode-switch">
+                    <div class="toggle-switch">
+                        <input type="checkbox" id="dark-mode-toggle" class="hidden-checkbox">
+                        <div class="slider"></div>
+                    </div>
+                </div>
             </nav>
         </header>
-    
-        <div>
+      
+        <section id="section-profile" >
             <div class="profile-container fade-animation">
                 <div class="profile-wrapper">
                     <div class="profile-img">
-                        <img src="img/profile.jpg" alt="profile picture">
+                        <img src="img/profile.jpg" srcset="img/profile.jpg 1x, img/profile.jpg 2x" alt="profile picture">
                         <!--<figcaption>profile picture</figcaption>-->
                     </div>
                     <!-- Orbiting circles -->
@@ -36,7 +43,7 @@
                 <article class="profile-description">
                     <h2>Hi, my name is <br><mark>Nur Fadhilah Sadrah.</mark></h2>
                     <p>
-                        A recent Informatics Engineering graduate and passionate <strong>Software Developer</strong>. With a keen eye for design and a knack for coding, I bring ideas to life by building <em>visually stunning and highly functional web & mobile apps</em> that not only captivate users with aesthetic appeal but also enhance overall user experience. I'm also interested in <abbr title="Artificial Intelligence">AI</abbr> and Machine Learning. In my free time, I enjoy listening to music, reading webtoons, <s>fangirling</s>, and watching variety shows.
+                        Recent Informatics Engineering graduate and passionate <strong>Software Developer</strong>. With a keen eye for design and a knack for coding, I bring ideas to life by building <em>visually stunning</em> and <em>highly functional web & mobile apps</em>. I'm also interested in <abbr title="Artificial Intelligence">AI</abbr> and Machine Learning. In my free time, I enjoy listening to music, reading webtoons, <s>fangirling</s>, and watching variety shows.
                     </p>
                     <!--<address>
                         <p>Gowa, South Sulawesi<br>
@@ -48,9 +55,9 @@
                     </aside>
                 </article>
             </div>
-        </div>
+        </section>
 
-        <section class="education-section fade-animation">
+        <section id="section-education" class="animated-section">
             <fieldset>
             <legend><h3><mark>Education</mark></h3></legend>
                 <ul class="education-list">
@@ -62,11 +69,11 @@
             </fieldset>
         </section>
 
-        <section>
+        <section id="section-work" class="animated-section">
             <fieldset>
                 <legend><h3><mark>Work Experiences</mark></h3></legend>
                 <div class="grid-container">
-                    <div class="work-experiences fade-animation">
+                    <div class="work-experiences">
                         <h4>Mobile App Developer (Intern)</h4>
                         <em>Glolingo Indonesia</em>
                         <hr>
@@ -76,7 +83,7 @@
                         </p>
                         <span>Aug 2020 - Oct 2020</span>
                     </div>
-                    <div class="work-experiences fade-animation">
+                    <div class="work-experiences">
                         <h4>Web Developer (Intern)</h4>
                         <em>IQR Foundation</em>
                         <hr>
@@ -87,7 +94,7 @@
                         </p>
                         <span>Jul 2020 - Aug 2020</span>
                     </div>
-                    <div class="work-experiences fade-animation">
+                    <div class="work-experiences">
                         <h4>Back End Developer (Intern)</h4>
                         <em>PT Docotel Technology Celebes</em>
                         <hr>
@@ -100,9 +107,9 @@
             </fieldset>
         </section>
     
-        <section id="motto" class="fade-animation">
+        <section id="section-motto" class="animated-section">
             <blockquote>
-                <h2><u><mark>Learn. Grow. Succeed.</mark></u></h2>
+                <h2 id="motto"><u><mark>Learn. Grow. Succeed.</mark></u></h2>
                 <p>
                     <em><q>Every morning you have two choices: continue to sleep with your dreams, or wake up and chase them.</q></em>
                     <span><br>- Carmelo Anthony</span>
@@ -112,5 +119,6 @@
         
         <footer>&copy; 2023 BTJ Academy</footer>
     </div>
+
 </body>
 </html>

@@ -1,18 +1,36 @@
 :root {
-    --primary-color : #4161d3;
-    --secondary-color : #424987;
-    --accent-color : #3cabe1;
-    --highlight-color : #ee741a;
+    --primary-color: #4161d3;
+    --secondary-color: #424987;
+    --accent-color: #3cabe1;
+    --highlight-color: #ee741a;
     --black-color: #333;
-    --box-background-color: #f8f8f8;
+    --main-background-color: #f8f8f8;
+    --box-background-color: #f2f2f2;
+    --large-text-size: 38px;
     --normal-text-size: 14px;
     --small-text-size: 12px;
+    --mobile-normal-text-size: 16px;
+    --box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     --blue-box-shadow: 0 0 15px rgba(52, 102, 170, 0.7);
-    --transition: color 0.3s ease;
+    --transition: color 0.5s ease;
+    --error-color: red;
+}
+
+/* Dark mode */
+:root[data-theme="dark"] {
+    --primary-color: #4a90e2; 
+    --secondary-color: #4b74e6;
+    --accent-color: #5095cc;
+    --highlight-color: #ff9800;
+    --main-background-color: #9f9f9;
+    --black-color: #fff;
+    --box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    --box-background-color: #414040;
+    --error-color: #ff6600;
 }
 
 * {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 
@@ -27,7 +45,7 @@ body {
     margin: 0;
     padding: 0;
     color: var(--black-color);
-    height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -38,14 +56,14 @@ body {
     background: var(--box-background-color);
     border-radius: 20px;
     overflow: auto;
-    height: 90vh;
+    min-height: 90vh;
     flex: 1;
     padding: 20px 30px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
                  rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
 
-/* Header */
+/* ------------------ HEADER ------------------- */
 header {
     display: flex;
     justify-content: space-between;
@@ -59,8 +77,9 @@ header {
   margin-right: 10px;
 }
 
-.logo > img {
-    max-width: 50px;
+#logo-img {
+    max-width: 75px;
+    transition: transform 0.5s ease-in-out;
 }
 
 .logo > h1 {
@@ -96,6 +115,50 @@ header {
     transition: var(--transition);
 }
 
+.toggle-switch {
+    display: inline-block;
+    position: relative;
+    width: 40px;
+    height: 20px;
+}
+
+.hidden-checkbox {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 20px;
+    transition: 0.4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* ------------------ LOGIN PAGE -----------------*/
 /* Content */
 .content-container {
     display: flex;
@@ -126,21 +189,61 @@ header {
 }
 
 .welcome-login > h2 {
-    color: #424987;
+    color: var(--secondary-color);
 }
 
-label, input, button {
+label, button {
     width: 100%;
-    margin: 5px 0;
+    margin: 5px 0 15px 0;
     padding: 15px 0;
 }
 
 input[type="text"], input[type="password"] {
-    margin-bottom: 15px;
-    width: calc(100% - 15px);
+    width: 100%;
     border: 1px solid #c2c8d0;
     border-radius: 5px;
-    padding-left: 10px;
+    padding: 10px;
+}
+
+.input-field {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.6); 
+}
+
+#password-container {
+    margin-top: 10px;
+}
+
+input[type="checkbox"] {
+    border: 1px solid #c2c8d0;
+    border-radius: 5px;
+    margin: 0;
+}
+
+input[type="checkbox"] + span {
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+.show-password {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.error-message, .capslock-warning {
+    font-size: 12px;
+    margin-top: 5px;
+    animation: slideUp 0.5s;
+}
+
+.error-message {
+    color: var(--error-color);
+    display: none;
+}
+
+.capslock-warning {
+    color: orange;
+    display: none;
 }
 
 input:focus {
@@ -150,14 +253,15 @@ input:focus {
     transition: var(--transition);
 }
 
-label {
+.login-container label {
+    padding: 20px 0px;
     font-size: var(--normal-text-size);
 }
 
 .login-button {
     background-color: var(--primary-color);
     color: white;
-    margin-top: 8px;
+    margin-top: 20px;
     border: none;
     border-radius: 5px;
     font-family: Poppins;
@@ -165,8 +269,9 @@ label {
 }
 
 /* enhances blue box shadow on hover for buttons */
-button:hover {
+.login-button:hover {
     box-shadow: var(--blue-box-shadow);
+    background-color: var(--secondary-color);
     cursor: pointer;
 }
 
@@ -178,7 +283,8 @@ button:hover {
 }
 
 .img-login {
-    max-width: 100%;
+    width: 100%;
+    min-width: 150px;
 }
 
 .quote > p {
@@ -190,12 +296,14 @@ button:hover {
 
 /* Footer */
 footer {
-    margin-top: 30px;
+    margin-top: 40px;
     text-align: center;
-    font-size: var(--small-text-size);
+    font-size: 0.8rem;
     letter-spacing: 2px;
 }
 
+
+/* ------------------- ABOUT ME PAGE -------------------- */
 /* Profile */
 .profile-container {
     padding: 20px;
@@ -207,15 +315,16 @@ footer {
 
 .profile-img {
     flex: 1;
+    min-width: 150px;
 }
 
 .profile-container .profile-wrapper {
     position: relative;
-    border: 2px solid var(--secondary-color);
+    /* border: 2px solid rgba(66, 73, 135, 0.5); */
     border-radius: 50%;
-    padding: 10px;
-    overflow: hidden;
-  }
+    padding: 5px;
+    box-shadow: 0 15px 50px rgba(52, 102, 170, 0.3);
+}
 
 .profile-container .profile-img {
     max-width: 100%;
@@ -231,7 +340,7 @@ footer {
 figcaption {
     text-align: center;
     color: var(--text-color);
-    font-size: var(--small-text-size);
+    font-size: 12px;
     font-style: italic;
 }
 
@@ -246,9 +355,12 @@ figcaption {
     font-size: 1em;
 }
 
+.profile-description h2 > mark {
+    font-size: 2em;
+}
+
 /* highlights marked text with yellow background that covers lower half of the text */
 mark {
-    font-size: 2em;
     font-family: Poppins;
     color: var(--primary-color);
     background: linear-gradient(to top, yellow 50%, transparent 50%);
@@ -257,7 +369,6 @@ mark {
 /* for paragraphs within the profile-description */
 article[class="profile-description"] > p {
     line-height: 1.8;
-    font-size: 1em;
 }
 
 /* for emphashized element within paragraph in the profile-description */
@@ -269,13 +380,14 @@ article[class="profile-description"] > p {
 
 address {
     font-style: italic;
-    font-size: var(--small-text-size);
+    font-size: 12px;
 }
 
 /* for buttons layout in profile-description */
 .profile-description aside {
     margin-top: 10px;
     display: flex;
+    font-size: var(--normal-text-size);
 }
 
 .profile-description button {
@@ -287,7 +399,7 @@ address {
     border: none;
     border-radius: 28px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    font-family: Poppins;
+    width: max-content;
 }
 
 .btn-github {
@@ -301,11 +413,12 @@ address {
 .btn-email:hover, .btn-github:hover {
     box-shadow: var(--blue-box-shadow);
     transition: var(--transition);
+    opacity: 0.8;
 }
 
 /* EDUCATION Section */
 /* styling for education section */
-.education-section {
+.education-list {
     align-items: left;
 }
 
@@ -314,20 +427,22 @@ fieldset {
     border-radius: 5px;
     padding: 20px;
     border: none;
-    flex-wrap: wrap;
     margin: 20px auto;
-    /*box-shadow: 0 0 10px rgba(52, 102, 170, 0.3);
-    background-color: rgb(161,209,245, 0.2);*/
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--box-shadow);
+    background-color: var(--box-background-color);
+}
+
+fieldset[data-theme="dark"] {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 /* styling for a title within the fieldset/container (Education & Work Experiences) */
-fieldset legend {
+legend > h3 {
     color: #fff;
     padding: 5px 10px ;
-    font-size: 3vh;
     border-radius: 5px;
     margin-left: 20px;
+    font-size: 1.5em;
     text-transform: uppercase;
     color: var(--primary-color);
 }
@@ -335,12 +450,14 @@ fieldset legend {
 .education-list {
     list-style-type: none; 
     font-weight: bold;
+    margin-top: 0;
 }
 
 .education-list li {
     padding: 8px 0;
     display: flex;
     align-items: center;
+    line-height: 1.5;
     border-bottom: 1px dashed #ccc; /* adds a dashed border at the bottom of each item */
 }
 
@@ -349,7 +466,7 @@ fieldset legend {
 .education-list li:before {
     content: "\f144"; 
     font-family: 'Font Awesome 5 Free'; 
-    margin-right: 10px; 
+    margin-right: 1em;
     color: var(--secondary-color); 
 }
 
@@ -446,10 +563,183 @@ fieldset legend {
 }
 
 #motto mark {
-    font-size: 40px;
+    font-size: 2rem;
 }
 
-/* Define the fade-in animation */
+
+/* ------------------ MEDIA QUERIES -----------------*/
+
+/* for mobile */
+@media (max-width: 700px){
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo, .navbar {
+        justify-content: center;
+    }
+
+    .content-container {
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 5px;
+    }
+
+    .left-container,
+    .right-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    label, button {
+        font-size: 1rem;
+        margin: 15px 0 0;
+    }
+
+    input {
+        margin: 5px 0;
+    }
+
+    .error-message {
+        margin: 0;
+    }
+
+    .welcome-login {
+        font-size: 1em;
+    }
+
+    .profile-container {
+        padding: 0;
+    }
+    
+    .profile-img img {
+        max-width: 100%;
+        border-radius: 50%;
+    }
+
+    article[class="profile-description"] > p, button {
+        line-height: 1.8;
+        font-size: var(--normal-text-size);
+    }
+
+    .profile-description aside {
+        flex-wrap: wrap;
+    }
+
+    .btn-email, .btn-github {
+        width: 100%;
+        margin: 0;
+        flex: 1;
+    }
+
+    .education-list {
+        padding-left: 10px;
+    }  
+}
+
+@media (max-width: 850px) {
+    .main-container {
+        padding: 10px;
+        margin: 10px;
+        height: 100%;
+    }
+
+    header {
+        margin: 0 20px;
+    }
+
+    .navbar > a {
+        font-size: 1em;
+    }
+
+    .logo > h1 {
+        font-size: 2rem;
+    }
+
+    .img-login {
+        width: 70%;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .content-container {
+        flex-direction: column;
+        margin-top: 20px;
+        padding: 25px;
+    }
+
+    .profile-container {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .profile-description h2 {
+        text-align: center;
+    }
+
+    .btn-email, .btn-github {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .profile-img {
+        width: 100%;
+        text-align: center;
+    }    
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+    
+    #motto em {
+        text-align: center;
+    } 
+
+}
+
+/* for desktop / wide screen */
+@media screen and (min-width: 1000px){
+    body {
+        height: 90vt;
+    }
+
+    .main-container {
+        margin: 50px;
+        max-width: 1000px;
+        height: 90vh;
+    }
+
+    body {
+        align-items: center;
+    }
+
+    article[class="profile-description"] > p, button {
+        font-size: var(--normal-text-size);
+    }
+}
+
+
+
+/* ANIMATION */
+.content-container {
+    animation: slideHorizontal 0.5s ease-in-out;
+}
+
+.fade-animation {
+    opacity: 0;
+    animation: fadeAnimation 0.5s ease-in-out forwards;
+}
+
+.animated-section {
+    opacity: 0;
+    animation: none;
+}
+
+
+/* animation */
 @keyframes fadeAnimation {
     from {
       opacity: 0;
@@ -460,187 +750,47 @@ fieldset legend {
       transform: translateY(0);
     }
 }
-  
-.fade-animation {
-    opacity: 0;
-    animation: fadeAnimation 1s ease-in-out forwards;
-    animation-play-state: paused;
-}
-  
-.content-container, .profile-container, .education-section, .work-experiences, #motto {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
 
-.content-container.fade-animation, .profile-container.fade-animation, 
-.education-section.fade-animation, 
-.work-experiences.fade-animation, 
-#motto.fade-animation {
-  animation-play-state: running;
-}
-
-/* Keyframes for the orbit animation */
-@keyframes orbit1 {
+@keyframes slideHorizontal {
     from {
-      transform: rotate(0deg) translateX(100px) rotate(0deg);
+        transform: translateX(-200px);
     }
     to {
-      transform: rotate(360deg) translateX(100px) rotate(-360deg);
+        transform: translateX(0px);
     }
 }
-  
-@keyframes orbit2 {
+        
+@keyframes slideInLeft {
     from {
-      transform: rotate(0deg) translateY(100px) rotate(0deg);
+        transform: translateX(-200px) scale(.2);
     }
     to {
-      transform: rotate(360deg) translateY(100px) rotate(-360deg);
+        transform: translateX(0px) scale(1);
     }
 }
-  
-@keyframes orbit3 {
+
+@keyframes slideInRight {
     from {
-      transform: rotate(0deg) translateX(-100px) rotate(0deg);
+        transform: translateX(200px) scale(.2);
     }
     to {
-      transform: rotate(360deg) translateX(-100px) rotate(-360deg);
+        transform: translateX(0px) scale(1);
     }
 }
 
-/* Orbiting circles styling */
-.orbit-circle {
-    position: absolute;
-    border-radius: 50%;
-    background-color: var(--secondary-color);
-    animation-duration: 3s; 
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-  
-/* Positioning each orbiting circle */
-.orbit-circle:nth-child(1) {
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    left: 10%;
-    animation-name: orbit1;
-}
-  
-.orbit-circle:nth-child(2) {
-    width: 15px;
-    height: 15px;
-    top: 10%;
-    left: 50%;
-    animation-name: orbit2;
-}
-  
-.orbit-circle:nth-child(3) {
-    width: 25px;
-    height: 25px;
-    top: 90%;
-    left: 80%;
-    animation-name: orbit3;
-}
-
-
-/*media queries */
-
-/* for small screen (mobile) */
-@media (max-width: 700px){
-    .main-container {
-        height: auto;
-    }
-
-    header {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .logo, .navbar {
-        justify-content: center;
-    }
-
-    .navbar {
-        margin-top: 0;
-        width: 100%;
-    }
-
-    .navbar > a {
-        font-size: 18px;
-        margin: 0 15px;
-    }
-
-    .logo > h1 {
-        font-size: 2rem;
-    }
-
-    .content-container {
-        flex-direction: column;
-    }
-
-    .left-container,
-    .right-container {
-          width: 100%;
-          padding: 20px;
-    }
-
-    label, input, button {
-        font-size: var(--normal-text-size);
-    }
-
-    .btn-email, .btn-github {
-        width: 100%;
-        margin-right: 0;
-    }
-
-    .welcome-login {
-        font-size: 3.5vw;
-    }
-
-    fieldset legend {
-        font-size: 70%;
-    }
-
-    .profile-container {
-        flex-direction: column;
-        margin-top: 20px;
-    }
-
-    .profile-img {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .profile-img img {
-        max-width: 100%;
-        border-radius: 50%;
-    }
-
-    .profile-description > h2, p {
-        font-size: 1em;
-    }
-
-    #motto h2 {
-        font-size: 30px;
-    }
-
-    #motto p {
-        font-size: 14px;
-    }   
-
-    .grid-container {
-        grid-template-columns: 1fr;
+@keyframes slideUp {
+    0% {
+        transform: translateY(5px);
     }
 }
 
-/* for desktop / wide screen */
-@media (min-width: 1000px){
-    .main-container {
-        margin: 50px;
-        max-width: 1000px;
+/*
+@keyframes expand {
+    0% {
+      transform: translateX(1000px);
     }
+    100% {
+      transform: translateX(0px);
+    }
+}*/
 
-    fieldset legend {
-        font-size: 70%;
-    }
-}
