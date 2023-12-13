@@ -2,9 +2,8 @@
     --primary-color: #4161d3;
     --secondary-color: #424987;
     --accent-color: #3cabe1;
-    --highlight-color: #ee741a;
+    --mark-text-color: #4161d3;
     --black-color: #333;
-    --main-background-color: #f8f8f8;
     --box-background-color: #f2f2f2;
     --large-text-size: 38px;
     --normal-text-size: 14px;
@@ -14,19 +13,25 @@
     --blue-box-shadow: 0 0 15px rgba(52, 102, 170, 0.7);
     --transition: color 0.5s ease;
     --error-color: red;
+    --btn-github-color: #302ae6;
+    --btn-email-color: #6e6aee;
+    --mark-background-color: linear-gradient(to top, yellow 50%, transparent 50%);
 }
 
 /* Dark mode */
 :root[data-theme="dark"] {
-    --primary-color: #4a90e2; 
-    --secondary-color: #4b74e6;
-    --accent-color: #5095cc;
-    --highlight-color: #ff9800;
-    --main-background-color: #9f9f9;
+    --mark-text-color: #dcdbf9;
+    --primary-color: #636aee;
+    --secondary-color: #9a97f3;
+    --accent-color: #e1e8ed;
     --black-color: #fff;
-    --box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    --box-shadow: 0 0 10px rgba(255, 255, 255, 0.39);
+    --blue-box-shadow: 0 0 15px rgba(18, 157, 243, 0.7);
     --box-background-color: #414040;
-    --error-color: #ff6600;
+    --error-color: #f07b61;
+    --btn-github-color: #4844ac;
+    --btn-email-color: #6e6aee;
+    --mark-background-color: var(--primary-color) 50%;
 }
 
 * {
@@ -84,7 +89,7 @@ header {
 
 .logo > h1 {
     font-size: 1.5em;
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 .navbar {
@@ -106,6 +111,7 @@ header {
 .navbar a.active {
     font-weight: bold;
     color: var(--primary-color);
+    padding: 0px 15px;
     border-bottom: 2px solid var(--primary-color);
 }
 
@@ -114,6 +120,7 @@ header {
     font-weight: bold;
     transition: var(--transition);
 }
+
 
 .toggle-switch {
     display: inline-block;
@@ -189,7 +196,7 @@ input:checked + .slider:before {
 }
 
 .welcome-login > h2 {
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 label, button {
@@ -206,7 +213,7 @@ input[type="text"], input[type="password"] {
 }
 
 .input-field {
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.6); 
+    box-shadow: white;
 }
 
 #password-container {
@@ -271,7 +278,7 @@ input:focus {
 /* enhances blue box shadow on hover for buttons */
 .login-button:hover {
     box-shadow: var(--blue-box-shadow);
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     cursor: pointer;
 }
 
@@ -351,7 +358,7 @@ figcaption {
 }
 
 .profile-description h2 {
-    color: var(--secondary-color);
+    color: var(--mark-text-color);
     font-size: 1em;
 }
 
@@ -362,8 +369,8 @@ figcaption {
 /* highlights marked text with yellow background that covers lower half of the text */
 mark {
     font-family: Poppins;
-    color: var(--primary-color);
-    background: linear-gradient(to top, yellow 50%, transparent 50%);
+    color: var(--mark-text-color);
+    background: var(--mark-background-color);
 }
 
 /* for paragraphs within the profile-description */
@@ -403,11 +410,11 @@ address {
 }
 
 .btn-github {
-    background-color: var(--secondary-color);
+    background-color: var(--btn-github-color);
 }
 
 .btn-email {
-    background-color: var(--primary-color);
+    background-color: var(--btn-email-color);
 }
 
 .btn-email:hover, .btn-github:hover {
@@ -432,10 +439,6 @@ fieldset {
     background-color: var(--box-background-color);
 }
 
-fieldset[data-theme="dark"] {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-}
-
 /* styling for a title within the fieldset/container (Education & Work Experiences) */
 legend > h3 {
     color: #fff;
@@ -444,7 +447,7 @@ legend > h3 {
     margin-left: 20px;
     font-size: 1.5em;
     text-transform: uppercase;
-    color: var(--primary-color);
+    color: var(--mark-text-color);
 }
 
 .education-list {
@@ -467,7 +470,7 @@ legend > h3 {
     content: "\f144"; 
     font-family: 'Font Awesome 5 Free'; 
     margin-right: 1em;
-    color: var(--secondary-color); 
+    color: var(--primary-color); 
 }
 
 /* styling for field of study*/
@@ -481,7 +484,6 @@ legend > h3 {
 
 /* hover effect for education list items */
 .education-list li:hover {
-    background-color: #f8f8f8;
     font-size: larger;
 }
 
