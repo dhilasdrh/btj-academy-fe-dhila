@@ -1,88 +1,89 @@
-# Task 3 Web Basic (Responsive Web)
+# Task 4 Web Basic (JavaScript)
 
->- Update the About Page from previous meeting. 
->- Modify your CSS with the one we learn today! 
->- Use as many CSS property as you can.
+# Task 4 Web Basic (JavaScript)
 
-## Result 
 
-<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/task3-result.gif">
 
-<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/task3-responsive-result.gif" width="80%">
 
-### Variables (`:root`):
+## Result
 
--   Sets global CSS variables for various colors, text sizes, box shadows, and transition timing.
+StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
 
-### General Styles (`*`):
+## Key Features
 
-Applies styles to all elements on the page.
+###   Logo Rotation
+Clicking on the logo triggers a 360-degree rotation animation.
 
--   `box-sizing: border-box;`: ensures that padding and border are included in the element's total width and height.
--   `font-family: 'DM Sans', sans-serif;`: sets the default font for the entire document.
--   `scroll-behavior: smooth;`: adds smooth scrolling behavior for anchor links.
--   `background-image`: applies a background image to the body.
+    document.getElementById('logo-img').addEventListener('click', function () {
+        this.style.transitionDuration = '1s';
+        this.style.transform += ' rotate(360deg)';
+    });
 
-### Main Container Styles:
+###  Password Visibility Toggle
+A checkbox enables users to toggle password visibility in the input field.
 
--   `display: flex;`: uses flexbox for layout.
--   `justify-content`, `align-items`: centers content both horizontally and vertically.
--   `box-shadow`: adds a subtle shadow effect.
+    function toggleShowPassword() {
+            passwordCheckbox = document.getElementById("show-password");
+            passwordInput.type = passwordCheckbox.checked ? "text" : "password";
+    }
 
-### Header Styles:
+### Login Form Validation
 
--   Flex container with space between items for the header.
--   Logo styling, including image size and header styles.
--   Navigation bar styling with links, active states, and hover effects.
+-   Input fields and event listeners are defined for login form validation.
+-   Caps Lock warning is displayed based on the Caps Lock key state.
+-   Successful validation redirects the user to another page.
 
-### Content Container Styles:
+### Dynamic Theming (Toggle Light/Dark Mode)
 
--   Flex container for content with space between items.
+The application allows users to switch between light and dark modes
+   using a toggle switch. This functionality is stored in local storage,
+   ensuring the preferred mode is retained upon revisits. 
 
-### Left Container Styles:
+Dark mode  styles are defined under `:root[data-theme="dark"]` to change the color scheme when dark mode is enabled. CSS variables are used for easy theming, allowing for a quick switch between dark and light modes.
 
--   Background color, box shadow, padding for the left container.
--   Styles for the login container, labels, inputs, buttons, and focus effects.
--   Emphasis on the login button hover effect.
+	    :root {
+	        --primary-color: #4161d3;
+	        --secondary-color: #424987;
+	        --accent-color: #3cabe1;
+	        --highlight-color: #ee741a;
+	        --black-color: #333;
+	        --main-background-color: #f8f8f8;
+	        --box-background-color: #f2f2f2;
+	        // ...
+	    }
+	    
+	    /* Dark mode */
+	    :root[data-theme="dark"] {
+	        --primary-color: #4a90e2;
+	        --secondary-color: #4b74e6;
+	        --accent-color: #5095cc;
+	        // ...
+	    }`
 
-### Right Container Styles:
+   
+### Animated Sections
 
--   Flex container with center-aligned items.
--   Styles for images, quotes, and paragraphs.
+The page includes animated sections that trigger animation effects when scrolled into view. The animations utilize the Intersection Observer API to detect when elements become visible in the viewport, triggering specific animations like sliding in from the left or right with opacity changes.
 
-### Footer Styles:
+### Animations
 
--   Margin, text alignment, font size, and letter spacing for the footer.
+Several keyframe animations, such as fadeAnimation, slideHorizontal, slideInLeft, and slideInRight, are defined for various elements.
 
-### Profile Styles:
 
--   Padding, flex layout, and border radius for the profile container.
--   Styles for the profile image, description, buttons, and additional styles for various profile details.
+### Media Queries (Responsive Web)
 
-### Education Section Styles:
+The styling is adjusted for different screen sizes using media queries.
 
--   Styles for the education section, fieldset, legend, and education list.
--   List item styling, icons, and hover effects.
--   Different styling for odd and even list items.
+    /* Media Queries */
+    @media (max-width: 700px) {
+        // Styles for mobile devices with max width 700px
+    }
+    
+    @media (max-width: 850px) {
+        // Styles for screens with max width 850px
+    }
+    
+    @media screen and (min-width: 1000px) {
+        // Styles for desktop/wide screens
+    }
 
-### Work Experiences Styles:
-
--   Grid container layout and gap for work experiences.
--   Card styling for work experiences with box shadow and transitions.
--   Styles for titles, emphasis, horizontal lines, descriptions, and spans.
-
-### Motto Section Styles:
-
--   Padding and text alignment for the motto section.
--   Styling for the mark element within the motto section.
-
-### Animations:
-
--   `@keyframes fadeAnimation`: Defines a fade-in animation.
--   `@keyframes orbit1, orbit2, orbit3`: Defines orbit animations for circles.
--   Orbiting circle styling with positioning and animation properties.
-
-### Media Queries:
-
--   Adjustments for mobile screens (max-width: 700px) and desktop screens (min-width: 1000px).
--   Changes include modifications to container heights, font sizes, and layout adjustments for better responsiveness.
