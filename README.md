@@ -1,14 +1,5 @@
 # Task 4 Web Basic (JavaScript)
 
-# Task 4 Web Basic (JavaScript)
-
-
-
-
-## Result
-
-StackEdit stores your files in your browser, which means all your files are automatically saved locally and are accessible **offline!**
-
 ## Key Features
 
 ###   Logo Rotation
