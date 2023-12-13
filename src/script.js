@@ -62,60 +62,75 @@ function toggleShowPassword() {
 }
 
 /* ---------- LOGIN VALIDATION --------- */
-usernameInput = document.getElementById('username');
-passwordInput = document.getElementById('password');
-usernameError = document.getElementById('error-username');
-passwordError = document.getElementById('error-password');
-capslockWarning = document.getElementsByClassName('capslock-warning')[0];
+const usernameInput = document.getElementById('username');
+const passwordInput = document.getElementById('password');
+const usernameError = document.getElementById('error-username');
+const passwordError = document.getElementById('error-password');
+const capslockWarning = document.getElementsByClassName('capslock-warning')[0];
 
 // variables for user input
-username = "";
-password = "";
+let username = "";
+let password = "";
 
 // event listeners (input and capslock)
 usernameInput.addEventListener('input', validateUsername);
 passwordInput.addEventListener('input', validatePassword);
 passwordInput.addEventListener('keyup', checkCapsLock);
 
+// validate login 
 function validateLogin(e) {
     e.preventDefault();
     validateUsername();
     validatePassword();
 
-    const loginButton = document.querySelector('.login-button');
-    const aboutLink = document.getElementById('aboutLink');
-
     // Check if both username and password are valid
-    if (username && password) {
+    if (username && isPasswordValid(password)) {
         window.location.href = "about.html";
     } 
 }
 
+// Check Capslock
 function checkCapsLock(event) {
     const isCapsLockOn = event.getModifierState('CapsLock');
     capslockWarning.style.display = isCapsLockOn ? 'block' : 'none';
 }
 
+// Display error input 
+function showError(inputElement, errorMessage) {
+    const errorContainer = document.getElementById('error-' + inputElement.id);
+    
+    // update error message and display style
+    errorContainer.innerHTML = errorMessage;
+    errorContainer.style.display = errorMessage ? 'block' : 'none';
+
+    // add red box shadow if there is an error
+    inputElement.style.boxShadow = errorMessage ? '0 0 5px rgba(255, 0, 0, 0.6)' : 'none';
+}
+
+// Username Validation
 function validateUsername() {
     username = usernameInput.value.trim();
-
-    usernameError.innerHTML = username === "" ? "Please fill the username correctly." : "";
-    usernameError.style.display = username === "" ? 'block' : 'none';
+    let errorMessage = username === "" ? "Please fill the username correctly." : "";
+    
+    showError(usernameInput, errorMessage)
 }
 
+// Password Validation
 function validatePassword() {
     password = passwordInput.value.trim();
-    isValid = isPasswordValid(password);
+    const isValid = isPasswordValid(password);
+    let errorMessage = "";
 
     if (password === "") {
-        passwordError.innerHTML = "Please fill the password correctly.";
-        passwordError.style.display = 'block';
-    } else {
-        passwordError.innerHTML = isValid ? "" : passwordError.innerHTML;
-        passwordError.style.display = isValid ? 'none' : 'block';
+        errorMessage = "Please fill the password correctly.";
+    } else if (!isValid) {
+        errorMessage = passwordError.innerHTML;
     }
+
+    showError(passwordInput, errorMessage);
 }
 
+// Check Password Validation
 function isPasswordValid(password) {
     const conditions = [
         { regex: /[A-Z]/, message: 'one uppercase letter' },
@@ -138,5 +153,3 @@ function isPasswordValid(password) {
         return true;
     }
 }
-
-
