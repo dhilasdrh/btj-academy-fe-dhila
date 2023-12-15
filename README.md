@@ -1,10 +1,22 @@
-# Task 4 Web Basic (JavaScript)
+# Task 5 Web Basic (jQuery)
+
+>  - Update the JS script created previously using jQuery
+> 
+>  - Use Fake API when submitting login page
+> 
+>      https://dummyjson.com/docs/users
+>    
+>      https://dummyjson.com/docs/auth
+>    
+>  - When the response is 200 from the API then redirect to the about    page.
+>  - Update the About Page from previous meeting.
+>  - Modify js script using jQuery, add some jQuery effects, be creative!
 
 ## Key Features
 
 ###   Logo Rotation
 
-Clicking on the logo triggers a 360-degree rotation animation.
+when the `"logo-img" `element is clicked, it rotates the logo image by 360 degrees, creating a spinning or rotating animation effect. 
 
 <img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/rotate-logo.gif">
 
