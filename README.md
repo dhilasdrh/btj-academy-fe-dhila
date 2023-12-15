@@ -54,6 +54,15 @@ Checks if the password meets certain conditions (at least one uppercase letter, 
 - **Check Caps Lock Function (`checkCapsLock`):**
 Check whether the caps lock key is active and displays a warning if it is.
 
+## Login Success
+
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/login-success.JPG">
+
+## Alert Message Invalid User Data
+
+<img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/invalid-data.JPG">
+
+
 ### Dynamic Theming (Toggle Light/Dark Mode)
 
 The application allows users to switch between light and dark modes using a toggle switch. This functionality is stored in local storage, ensuring the preferred mode is retained upon revisits. 
