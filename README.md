@@ -62,7 +62,6 @@ Check whether the caps lock key is active and displays a warning if it is.
 
 <img src="https://github.com/dhilasdrh/btj-academy-fe-dhila/blob/main/screenshot/invalid-data.JPG">
 
-Username and password input validation and caps lock warning.
 
 ### Dynamic Theming (Toggle Light/Dark Mode)
 
