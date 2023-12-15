@@ -6,7 +6,7 @@
     <title>BTJ Academy</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap" rel="stylesheet">
-    <script defer src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="main-container">
@@ -17,12 +17,10 @@
             </div>
             <nav class="navbar">
                 <a href="index.html" class="active">Home</a>
-                <a href="#" onclick="validateLogin(event)">About</a> 
-                <div class="mode-switch">
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="dark-mode-toggle" class="hidden-checkbox">
-                        <div class="slider"></div>
-                    </div>
+                <a href="#" id="about-link">About</a> 
+                <div class="toggle-switch">
+                    <input type="checkbox" id="dark-mode-toggle" class="hidden-checkbox">
+                    <div class="slider"></div>
                 </div>
             </nav>
         </header>
@@ -31,17 +29,20 @@
             <div class="left-container">
                 <div class="welcome-login">
                     <h2>Welcome to Our Landing Page</h2>
-                    <p>Please login to access other features</p>
+                    <p id="prompt-login">Please login to access other features</p>
                 </div>
                 
                 <div class="login-container" >
-                    <form action="about.html" onsubmit="validateLogin(event)" novalidate>
-                        <div id="username-container">
+                    <div>
+                        <p id="invalid-data-message">Incorrect username or password.</p>
+                    </div>
+                    <form id="login-form" novalidate>
+                        <div>
                             <label for="username">Username:</label>
-                            <input type="text"  id="username" placeholder="Enter your username" required>
+                            <input type="text" id="username" placeholder="Enter your username" required>
                             <p class="error-message" id="error-username" ></p>
                         </div>
-                        <div id="password-container">
+                        <div>
                             <label for="password">Password:</label>
                             <input type="password"  id="password" placeholder="Enter your password" required>
                             <p class="error-message" id="error-password"></p>
@@ -67,6 +68,6 @@
         
         <footer>&copy; 2023 BTJ Academy</footer>
     </div>
-
+    <script src="script.js"></script>
 </body>
 </html>

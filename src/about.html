@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <script defer src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="main-container">
@@ -19,17 +19,21 @@
             <nav class="navbar">
                 <a class="nav-item" href="index.html">Home</a>
                 <a href="about.html" class="nav-item active">About</a>
-                <div class="mode-switch">
-                    <div class="toggle-switch">
-                        <input type="checkbox" id="dark-mode-toggle" class="hidden-checkbox">
-                        <div class="slider"></div>
-                    </div>
+                <div class="toggle-switch">
+                    <input type="checkbox" id="dark-mode-toggle" class="hidden-checkbox">
+                    <div class="slider"></div>
                 </div>
             </nav>
         </header>
-      
-        <section id="section-profile" >
-            <div class="profile-container fade-animation">
+
+        <div class="scroll-bottom">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 5.25l-7.5 7.5-7.5-7.5m15 6l-7.5 7.5-7.5-7.5" />
+              </svg>                        
+        </div>
+
+        <section id="section-profile" class="animated-section" >
+            <div class="profile-container">
                 <div class="profile-wrapper">
                     <div class="profile-img">
                         <img src="img/profile.jpg" srcset="img/profile.jpg 1x, img/profile.jpg 2x" alt="profile picture">
@@ -41,7 +45,7 @@
                     <div class="orbit-circle"></div>
                 </div>
                 <article class="profile-description">
-                    <h2>Hi, my name is <br><mark>Nur Fadhilah Sadrah.</mark></h2>
+                    <h2>Hi, my name is <br><span><mark id="name">Nur Fadhilah Sadrah.</mark></span></h2>
                     <p>
                         Recent Informatics Engineering graduate and passionate <strong>Software Developer</strong>. With a keen eye for design and a knack for coding, I bring ideas to life by building <em>visually stunning</em> and <em>highly functional web & mobile apps</em>. I'm also interested in <abbr title="Artificial Intelligence">AI</abbr> and Machine Learning. In my free time, I enjoy listening to music, reading webtoons, <s>fangirling</s>, and watching variety shows.
                     </p>
@@ -116,9 +120,17 @@
                 </p>
             </blockquote>
         </section>
+
+        <div class="scroll-top">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l7.5-7.5 7.5 7.5m-15 6l7.5-7.5 7.5 7.5" />
+              </svg>              
+        </div>
         
         <footer>&copy; 2023 BTJ Academy</footer>
+
     </div>
 
+    <script src="script.js"></script>
 </body>
 </html>

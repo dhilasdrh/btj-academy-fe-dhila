@@ -1,157 +1,256 @@
-/* ------------- TOGGLE LIGHT/DARK MODE & ANIMATED SECTION ------------- */
-window.onload = function () {
-    // ---- Mode Switch  ----- //
-    const toggleSwitch = document.querySelector('.toggle-switch');
-    const hiddenCheckbox = document.getElementById('dark-mode-toggle');
+// run script after the DOM has fully loaded
+$(document).ready(function() {
+    /* ------- ROTATE LOGO 360 DEGREE ------ */
+    let degree = 0;
+    $('#logo-img').on('click', function() {
+        degree += 360;
+        $(this).css({'transform': `rotate(${degree}deg)`, 'transition-duration': '1s'});
+    });
 
-    // Check the local storage for the dark mode preference
-    const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+    /* ------- SHOW PASSWORD CHECKBOX ------ */
+    $('#show-password').on('change', function() {
+        passwordInput.attr('type', this.checked ? 'text' : 'password');
+    });
 
-    // Set the initial theme based on the local storage
-    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-    hiddenCheckbox.checked = isDarkMode;
+    /* ---------- INPUT VALIDATION --------- */
+    var usernameInput = $('#username');
+    var passwordInput = $('#password');
+    var usernameError = $('#error-username');
+    var passwordError = $('#error-password');
 
-    toggleSwitch.addEventListener('click', () => {
-        const isDarkMode = !hiddenCheckbox.checked;
-        // Save the dark mode state to local storage
-        localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
-        document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-        hiddenCheckbox.checked = isDarkMode;
+    let username = "";
+    let password = "";
+
+    usernameInput.on('input', validateUsername);
+    passwordInput.on('input', validatePassword);
+
+    // caps lock warning
+    passwordInput.on('keyup keydown', function(e){
+        const capsLockOn = e.originalEvent.getModifierState('CapsLock');
+        $('.capslock-warning').toggle(capsLockOn);
+    });
+    
+    function validateUsername() {
+        username = $.trim(usernameInput.val());
+        const errorMessage = (username == "") ? "Please fill the username correctly." : "";
+
+        usernameError.text(errorMessage);
+        usernameError.toggle(!!errorMessage);
+        usernameInput.css('box-shadow', errorMessage ? 'var(--input-error-box-shadow)' : 'none'); 
+    }
+
+    function validatePassword() {
+        password = $.trim(passwordInput.val());
+        const isValid = isPasswordValid(password);
+        const errorMessage = (password == "") ? "Please fill the password correctly." : (!isValid && passwordError.text());
+        
+        passwordError.text(errorMessage);
+        passwordError.toggle(!!errorMessage);
+        passwordInput.css('box-shadow', errorMessage ? 'var(--input-error-box-shadow)' : 'none'); 
+    }
+    
+    function isPasswordValid(password) {
+        var conditions = [
+            { regex: /[A-Z]/, message: 'one uppercase letter' },
+            { regex: /[a-z]/, message: 'one lowercase letter' },
+            { regex: /\d/, message: 'one number' }
+            // { regex: /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/, message: 'one symbol' }
+        ];
+
+        var unmetConditions = conditions.filter(function(condition) {
+            return !condition.regex.test(password);
+        });
+
+        if (unmetConditions.length > 0) {
+            var errorMessage = "Password need to have " + unmetConditions.map(function(cond) {
+                return cond.message;
+            }).join(', ').replace(/,([^,]*)$/, unmetConditions.length > 2 ? ', and$1' : ' and$1') + '.';
+
+            passwordError.text(errorMessage);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /* ---------- LOGIN VALIDATION --------- */
+    $('#login-form').submit(validateLogin);
+    $('#about-link').click(validateLogin);
+
+    function validateLogin(e) {
+        e.preventDefault();
+        validateUsername();
+        validatePassword();   
+
+        if (username !== "" && password !== "" && passwordError.css('display') === 'none') {
+            authenticateUser();
+        }
+    }
+
+    // fetch data from API and authenticate user 
+    const authenticateUser = async () => {
+        const url = 'https://dummyjson.com/users';
+        try {
+            const response = await fetch(url);
+            if (response.ok) {
+                const data = await response.json();
+                const isValidUser = data.users.some(user => user.username === username && user.password === password);
+        
+                if (isValidUser) {
+                    // find the user object
+                    const user = data.users.find(user => user.username === username && user.password === password);
+                    
+                    // get full name from user object
+                    const fullName = `${user.firstName} ${user.lastName}`;
+        
+                    // show welcome alert with user full name
+                    alert(`Login Successful! Welcome ${fullName}`);
+
+                    // redirect to About page
+                    window.location.href = 'about.html';
+                } else {
+                    // alert("Invalid Username and Password");
+                    $('#invalid-data-message').show(500);
+                }
+            } else {
+                throw new Error('Failed to fetch data');
+            } 
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            alert('An error occurred during login. Please try again later.');
+        }
+    };
+
+
+    /* ------ TOGGLE DARK/LIGHT MODE TOGGLE ------- */
+    
+    // load theme mode state from localStorage
+    const darkModeToggle = $('#dark-mode-toggle');
+    const rootElement = $(':root');
+    const initialDarkModeState = localStorage.getItem('darkMode') === 'true';
+    darkModeToggle.prop('checked', initialDarkModeState);
+    rootElement.attr('data-theme', initialDarkModeState ? 'dark' : '');
+
+    $('.slider').click(function () {
+        const newModeState = !darkModeToggle.is(':checked');
+        darkModeToggle.prop('checked', newModeState).trigger('change');
+        saveDarkModeState(newModeState);
+    });
+
+    darkModeToggle.on('change', function () {
+        const isDarkMode = darkModeToggle.is(':checked');
+        rootElement.attr('data-theme', isDarkMode ? 'dark' : '');
+        saveDarkModeState(isDarkMode);
+    });
+
+    function saveDarkModeState(isDarkMode) {
+        localStorage.setItem('darkMode', isDarkMode);
+    }
+
+    
+   /* ------ ANIMATED SECTION & SCROLL UP/DOWN BUTTONS ------ */
+    var observer = new IntersectionObserver(handleIntersection, { threshold: 0.2 });
+
+    $(".animated-section").each(function () {
+        observer.observe(this);
+    });
+
+    // Initial state: hide scroll-up and scroll-down buttons
+    $(".scroll-top, .scroll-bottom").hide();
+
+    function handleIntersection(entries, observer) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                switch (entry.target.id) {
+                    case "section-profile":
+                        $(".scroll-bottom").show();
+                        $(".scroll-top").hide();
+                        break;
+                    case "section-education":
+                        // fade in and slide in from left
+                        $(entry.target).animate({ opacity: 1, left: 0 }, 500);
+                        break;
+                    case "section-work":
+                        // fade in and scale up
+                        $(entry.target).animate({ opacity: 1, scale: 1 }, 500);
+                        break;
+                    case "section-motto":
+                        // fade in and slide in from left
+                        $(entry.target).animate({ opacity: 1, right: 0 }, 500, function () {
+                            // show the scroll-top button when the "section-motto" is reached
+                            $(".scroll-top").fadeIn(200);
+                            $(".scroll-bottom").hide();
+                        });
+                        break;
+                }
+                observer.unobserve(entry.target);
+            }
+        });
+    }
+
+    // scroll to the top when the scroll-top button is clicked
+    $(".scroll-top").on("click", function () {
+        $(".main-container").animate({ scrollTop: 0 }, 500);
+        $(".scroll-top").hide(); // hide the button again after reaching the top
+        $(".scroll-bottom").show();
+    });
+
+    // scroll to the bottom when the scroll-bottom button is clicked
+    $(".scroll-bottom").on("click", function () {
+        $(".main-container").animate({ scrollTop: $(document).height() }, "slow");
+        $(".scroll-bottom").hide(); // hide the button again after reaching the bottom
+        $(".scroll-top").fadeIn(200);
     });
 
 
-    // ---- Animated Section ----- //
-    const sections = document.querySelectorAll(".animated-section");
-    
-    // intersection Observer
-    var observer = new IntersectionObserver(function (entries, observer) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                // define different animation styles based on section ID
-                switch (entry.target.id) {
-                    case "section-education":
-                    case "section-motto":
-                        entry.target.style.animation = "slideInLeft 0.5s ease";
-                        entry.target.style.opacity = 1;
-                        break;
-                    case "section-work":
-                        entry.target.style.animation = "slideInRight 0.5s ease";
-                        entry.target.style.opacity = 1;
-                        break;
-                }
-            }
-        });
-    }, { threshold: 0.2 });
-    
-    // Observe each section
-    sections.forEach(function (section) {
-        observer.observe(section);
-     });
-};
+    /* -------- Additional jQuery Effects -------- */
 
-/* ------- ROTATE LOGO 360 DEGREE ------ */
-let degree = 0;
-document.getElementById('logo-img').addEventListener('click', function() {
-    degree += 360; 
-    this.style.transform =`rotate(${degree}deg)`; 
-    this.style.transitionDuration = '1s';
+    $("#prompt-login").hide(); // initially hide prompt login 
+    $("#prompt-login").slideDown(700); // display prompt login by sliding it down
+
+    // $("#name").slideDown();
+
+
+    // smoothly shrinking the image by adding space (padding) around them
+    $(".img-login").animate({
+        padding: '15px'
+    }, 700); 
+
+
+    // animated letter spacing for logo title (Welcome)
+    $(".logo > h1").on('click', function(){
+        if ($(this).hasClass('animated')) {
+            // If the element has the 'animated' class, remove it and animate back to the original state
+            $(this).animate({
+                marginLeft: '0',
+                letterSpacing: '0'
+            }, 700).removeClass('animated');
+        } else {
+            // If the element doesn't have the 'animated' class, add it and animate
+            $(this).animate({
+                marginLeft: '10px',
+                letterSpacing: '2px'
+            }, 700).addClass('animated');
+        }}); 
+
+
+    // show profile img
+    $(".profile-img").show(500);
+
+
+    // typing and fade-in fade-out effect for name
+    var name = $("#name").text();
+    var speed = 100; // 1s
+
+    function typeWriter(text, i) {
+        $("#name").text(text.substring(0, i + 1));
+        
+        if (i === text.length) {
+            pointer.fadeToggle(speed, () => typeWriter(text, i));
+        } else {
+            $("#name").fadeIn(speed, () => setTimeout(() => typeWriter(text, i + 1), speed));
+        }
+    }
+    setTimeout(() => typeWriter(name, 0), 100);
+
 });
-
-/* ------- SHOW PASSWORD CHECKBOX ------ */
-function toggleShowPassword() {
-    passwordCheckbox = document.getElementById("show-password");
-    passwordInput.type = passwordCheckbox.checked ? "text" : "password";
-}
-
-/* ---------- LOGIN VALIDATION --------- */
-const usernameInput = document.getElementById('username');
-const passwordInput = document.getElementById('password');
-const usernameError = document.getElementById('error-username');
-const passwordError = document.getElementById('error-password');
-const capslockWarning = document.getElementsByClassName('capslock-warning')[0];
-
-// variables for user input
-let username = "";
-let password = "";
-
-// event listeners (input and capslock)
-usernameInput.addEventListener('input', validateUsername);
-passwordInput.addEventListener('input', validatePassword);
-passwordInput.addEventListener('keyup', checkCapsLock);
-
-// validate login 
-function validateLogin(e) {
-    e.preventDefault();
-    validateUsername();
-    validatePassword();
-
-    // Check if both username and password are valid
-    if (username && isPasswordValid(password)) {
-        window.location.href = "about.html";
-    } 
-}
-
-// Check Capslock
-function checkCapsLock(event) {
-    const isCapsLockOn = event.getModifierState('CapsLock');
-    capslockWarning.style.display = isCapsLockOn ? 'block' : 'none';
-}
-
-// Display error input 
-function showError(inputElement, errorMessage) {
-    const errorContainer = document.getElementById('error-' + inputElement.id);
-    
-    // update error message and display style
-    errorContainer.innerHTML = errorMessage;
-    errorContainer.style.display = errorMessage ? 'block' : 'none';
-
-    // add red box shadow if there is an error
-    inputElement.style.boxShadow = errorMessage ? '0 0 5px rgba(255, 0, 0, 0.6)' : 'none';
-}
-
-// Username Validation
-function validateUsername() {
-    username = usernameInput.value.trim();
-    let errorMessage = username === "" ? "Please fill the username correctly." : "";
-    
-    showError(usernameInput, errorMessage)
-}
-
-// Password Validation
-function validatePassword() {
-    password = passwordInput.value.trim();
-    const isValid = isPasswordValid(password);
-    let errorMessage = "";
-
-    if (password === "") {
-        errorMessage = "Please fill the password correctly.";
-    } else if (!isValid) {
-        errorMessage = passwordError.innerHTML;
-    }
-
-    showError(passwordInput, errorMessage);
-}
-
-// Check Password Validation
-function isPasswordValid(password) {
-    const conditions = [
-        { regex: /[A-Z]/, message: 'one uppercase letter' },
-        { regex: /[a-z]/, message: 'one lowercase letter' },
-        { regex: /\d/, message: 'one number' },
-        { regex: /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/, message: 'one symbol' }
-    ];
-
-    const unmetConditions = conditions.filter(condition => !condition.regex.test(password));
-
-    if (unmetConditions.length > 0) {
-        const errorMessage = `Password needs to have ${unmetConditions
-            .map(({ message }) => message)
-            .join(', ')
-            .replace(/,([^,]*)$/, `${unmetConditions.length > 2 ? ', and$1' : ' and$1'}`)}.`;
-
-        passwordError.innerHTML = errorMessage;
-        return false;
-    } else {
-        return true;
-    }
-}
